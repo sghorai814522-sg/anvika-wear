@@ -1,0 +1,120 @@
+{{ 'custom-featured-collection.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-featured-collection.js' | asset_url }}" defer="defer"></script>
+
+<div class="cfc-section">
+  <div class="container">
+    <div class="cfc-header">
+      <h2 class="cfc-title">{{ section.settings.title }}</h2>
+      {%- if section.settings.view_all_text != blank -%}
+        <a href="{{ section.settings.view_all_link | default: section.settings.collection.url | default: '#' }}" class="cfc-view-all">
+          {{ section.settings.view_all_text | remove: '→' | remove: '->' | strip }}<span class="cfc-view-all-arrow" aria-hidden="true">&#8250;</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="cfc-grid-wrapper">
+      <div class="cfc-grid">
+        {%- assign collection = section.settings.collection -%}
+        {%- if collection != blank and collection.products_count > 0 -%}
+          {%- for product in collection.products limit: section.settings.product_limit -%}
+            <div class="cfc-product-card">
+              <a href="{{ product.url }}" class="cfc-product-image-link">
+                <div class="cfc-product-image">
+                  {%- if product.featured_image -%}
+                    <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title | escape }}" loading="lazy">
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+              </a>
+              
+              <div class="cfc-product-info">
+                <a href="{{ product.url }}" class="cfc-product-title">{{ product.title }}</a>
+                
+                <div class="cfc-product-price-wrapper">
+                  <span class="cfc-product-price">{{ product.price | money }}</span>
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="cfc-product-compare">{{ product.compare_at_price | money }}</span>
+                  {%- endif -%}
+                </div>
+                
+                <form method="post" action="/cart/add" class="cfc-add-to-cart-form">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <button type="submit" class="cfc-add-to-cart-btn" {% unless product.available %}disabled{% endunless %}>
+                    {% if product.available %}Add to Cart{% else %}Sold Out{% endif %}
+                  </button>
+                </form>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Placeholder Data if no collection is selected -->
+          {%- for i in (1..section.settings.product_limit) -%}
+            <div class="cfc-product-card">
+              <div class="cfc-product-image-link">
+                <div class="cfc-product-image">
+                  {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                  {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              </div>
+              
+              <div class="cfc-product-info">
+                <span class="cfc-product-title">Sample Product Title</span>
+                <div class="cfc-product-price-wrapper">
+                  <span class="cfc-product-price">₹2,499</span>
+                  <span class="cfc-product-compare">₹3,499</span>
+                </div>
+                <button type="button" class="cfc-add-to-cart-btn">Add to Cart</button>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link (Optional)"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Number of products to show",
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Grid",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,121 @@
+{{ 'custom-circle-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-circle-slider.js' | asset_url }}" defer="defer"></script>
+
+<div class="ccs-section" data-autoplay="{{ section.settings.auto_play }}" data-speed="{{ section.settings.auto_play_speed | times: 1000 }}">
+  <div class="container">
+    
+    <div class="ccs-header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="ccs-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.view_all_text != blank -%}
+        <a href="{{ section.settings.view_all_link | default: '#' }}" class="ccs-view-all">
+          {{ section.settings.view_all_text | remove: '→' | remove: '->' | strip }}<span class="ccs-view-all-arrow" aria-hidden="true">&#8250;</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="ccs-slider-wrapper">
+      <div class="ccs-slider-track">
+        {%- for block in section.blocks -%}
+          <div class="ccs-slide-item" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link }}" class="ccs-item-link">
+              <div class="ccs-item-image-wrapper">
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | img_url: '400x400', crop: 'center' }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+              {%- if block.settings.title != blank -%}
+                <span class="ccs-item-title">{{ block.settings.title }}</span>
+              {%- endif -%}
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Circle Collection Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trending Collection"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "label": "Enable Auto Play",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_play_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto Play Speed",
+      "default": 3
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Circle Collection Slider",
+      "blocks": [
+        { "type": "collection", "settings": { "title": "Sarees" } },
+        { "type": "collection", "settings": { "title": "Salwar Suits" } },
+        { "type": "collection", "settings": { "title": "Lehenga" } },
+        { "type": "collection", "settings": { "title": "Kurtis" } },
+        { "type": "collection", "settings": { "title": "Sherwani" } },
+        { "type": "collection", "settings": { "title": "Indo-Western" } },
+        { "type": "collection", "settings": { "title": "Ethnic Gowns" } },
+        { "type": "collection", "settings": { "title": "Co-Ord Sets" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

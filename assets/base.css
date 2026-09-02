@@ -26,6 +26,7 @@ html {
 }
 
 @media (min-width: 990px) {
+
   html:has(.page-wrapper),
   html:has(.page-wrapper) body {
     height: 100dvh;
@@ -55,12 +56,15 @@ html[scroll-lock] .page-wrapper {
   }
 
   .page-wrapper--drawer-open shopify-account::part(dialog) {
-    translate: calc(-1 * var(--theme-drawer-width, var(--sidebar-width)));
+    translate: 0;
+    /* Disabled: no squeeze layout, drawer overlays absolutely */
   }
 }
 
 .page-wrapper--drawer-open {
-  margin-right: var(--theme-drawer-width, var(--sidebar-width));
+  /* Remove margin-right to prevent body expansion when cart drawer opens */
+  /* margin-right: var(--theme-drawer-width, var(--sidebar-width)); */
+  margin-right: 0 !important;
   transition-timing-function: var(--animation-timing-fade-in);
 }
 
@@ -140,7 +144,7 @@ p:empty {
 }
 
 :first-child:is(p, h1, h2, h3, h4, h5, h6),
-:first-child:empty + :where(p, h1, h2, h3, h4, h5, h6) {
+:first-child:empty+ :where(p, h1, h2, h3, h4, h5, h6) {
   margin-block-start: 0;
 }
 
@@ -161,6 +165,7 @@ p:empty {
  * take effect once an `@view-transition` opt-in is active, so they are inert without it.
  */
 @media (prefers-reduced-motion: no-preference) {
+
   /* Keep page interactive while view transitions are running */
   :root {
     view-transition-name: none;
@@ -250,7 +255,7 @@ p:empty {
   flex-direction: column;
 }
 
-.content-for-layout > .shopify-section:last-child {
+.content-for-layout>.shopify-section:last-child {
   flex-grow: 1;
 }
 
@@ -265,6 +270,7 @@ p:empty {
 }
 
 @media screen and (min-width: 750px) {
+
   .page-width-wide,
   .page-width-normal,
   .page-width-narrow,
@@ -300,19 +306,14 @@ p:empty {
    full-width background image even if the section content is constrained by the page width. Do not try
    to rewrite this to max-width: --page-width; margin: 0 auto;, it doesn't work. */
 .section {
-  --full-page-grid-central-column-width: min(
-    var(--page-width) - var(--page-margin) * 2,
-    calc(100% - var(--page-margin) * 2)
-  );
+  --full-page-grid-central-column-width: min(var(--page-width) - var(--page-margin) * 2,
+      calc(100% - var(--page-margin) * 2));
   --full-page-grid-margin: minmax(var(--page-margin), 1fr);
-  --full-page-grid-with-margins: var(--full-page-grid-margin) var(--full-page-grid-central-column-width)
-    var(--full-page-grid-margin);
+  --full-page-grid-with-margins: var(--full-page-grid-margin) var(--full-page-grid-central-column-width) var(--full-page-grid-margin);
 
   /* Utility variable gives the grid's first column width. Provides an offset width for components like carousels */
-  --util-page-margin-offset: max(
-    var(--page-margin),
-    calc((100% - min(var(--page-content-width), 100% - var(--page-margin) * 2)) / 2)
-  );
+  --util-page-margin-offset: max(var(--page-margin),
+      calc((100% - min(var(--page-content-width), 100% - var(--page-margin) * 2)) / 2));
 
   /* Offset for full-width sections to account for the page margin,
   used for Marquee — note that --util-page-margin-offset doesn't work here */
@@ -330,7 +331,7 @@ p:empty {
 }
 
 /* Place all direct children in the center column by default */
-.section > * {
+.section>* {
   grid-column: 2;
 }
 
@@ -352,23 +353,23 @@ p:empty {
 }
 
 /* For page-width sections, all content goes in the center column */
-.section--page-width > * {
+.section--page-width>* {
   grid-column: 2;
 }
 
 /* For full-width sections, content spans all columns */
-.section--full-width > * {
+.section--full-width>* {
   grid-column: 1 / -1;
 }
 
 @media screen and (max-width: 749px) {
-  .section--mobile-full-width > * {
+  .section--mobile-full-width>* {
     grid-column: 1 / -1;
   }
 }
 
 /* For full-width sections with margin, content still spans full width but with space on the sides */
-.section--full-width.section--full-width-margin > * {
+.section--full-width.section--full-width-margin>* {
   grid-column: 1 / -1;
 
   @media screen and (min-width: 750px) {
@@ -378,7 +379,7 @@ p:empty {
 }
 
 /* Some section content break out to full width of the page */
-.section > .force-full-width {
+.section>.force-full-width {
   grid-column: 1 / -1;
 }
 
@@ -413,6 +414,7 @@ p:empty {
 }
 
 @media screen and (max-width: 749px) {
+
   .hidden--mobile,
   .mobile\:hidden {
     /* stylelint-disable-next-line declaration-no-important */
@@ -421,6 +423,7 @@ p:empty {
 }
 
 @media screen and (min-width: 750px) {
+
   .hidden--desktop,
   .desktop\:hidden {
     /* stylelint-disable-next-line declaration-no-important */
@@ -478,11 +481,8 @@ p:empty {
 @media screen and (min-width: 1400px) {
   .grid {
     grid-template-columns:
-      1fr repeat(
-        var(--centered-column-number),
-        minmax(0, calc((var(--page-width) - var(--page-margin) * 2) / var(--centered-column-number)))
-      )
-      1fr;
+      1fr repeat(var(--centered-column-number),
+        minmax(0, calc((var(--page-width) - var(--page-margin) * 2) / var(--centered-column-number)))) 1fr;
   }
 }
 
@@ -554,7 +554,7 @@ p:empty {
   height: var(--icon-size-xs);
 }
 
-.svg-wrapper > svg {
+.svg-wrapper>svg {
   width: var(--icon-size-sm);
   height: var(--icon-size-sm);
 }
@@ -590,7 +590,7 @@ p:empty {
 /* Base text and heading styles */
 body,
 .paragraph:not(.button),
-.paragraph > *,
+.paragraph>*,
 .text-block.paragraph :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-paragraph--family);
   font-style: var(--font-paragraph--style);
@@ -604,6 +604,7 @@ body,
 
 /* Ensure inputs with type presets maintain minimum 16px on mobile to prevent iOS zoom */
 @media screen and (max-width: 1200px) {
+
   input.paragraph.paragraph,
   input.paragraph.paragraph:not([type]),
   textarea.paragraph.paragraph,
@@ -612,7 +613,7 @@ body,
   }
 }
 
-.paragraph > small {
+.paragraph>small {
   font-size: smaller;
 }
 
@@ -620,7 +621,7 @@ body,
 
 h1,
 .h1.h1,
-.text-block.h1 > *,
+.text-block.h1>*,
 .text-block.h1 :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-h1--family);
   font-style: var(--font-h1--style);
@@ -633,6 +634,7 @@ h1,
 }
 
 @media screen and (max-width: 1200px) {
+
   input.h1.h1,
   textarea.h1.h1,
   select.h1.h1 {
@@ -642,7 +644,7 @@ h1,
 
 h2,
 .h2.h2,
-.text-block.h2 > *,
+.text-block.h2>*,
 .text-block.h2 :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-h2--family);
   font-style: var(--font-h2--style);
@@ -655,6 +657,7 @@ h2,
 }
 
 @media screen and (max-width: 1200px) {
+
   input.h2.h2,
   textarea.h2.h2,
   select.h2.h2 {
@@ -665,7 +668,7 @@ h2,
 h3,
 .h3,
 .h3.h3,
-.text-block.h3 > *,
+.text-block.h3>*,
 .text-block.h3 :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-h3--family);
   font-style: var(--font-h3--style);
@@ -678,6 +681,7 @@ h3,
 }
 
 @media screen and (max-width: 1200px) {
+
   input.h3,
   textarea.h3,
   select.h3 {
@@ -687,7 +691,7 @@ h3,
 
 h4,
 .h4.h4,
-.text-block.h4 > *,
+.text-block.h4>*,
 .text-block.h4 :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-h4--family);
   font-style: var(--font-h4--style);
@@ -700,6 +704,7 @@ h4,
 }
 
 @media screen and (max-width: 1200px) {
+
   input.h4.h4,
   textarea.h4.h4,
   select.h4.h4 {
@@ -709,7 +714,7 @@ h4,
 
 h5,
 .h5.h5,
-.text-block.h5 > *,
+.text-block.h5>*,
 .text-block.h5 :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-h5--family);
   font-style: var(--font-h5--style);
@@ -722,6 +727,7 @@ h5,
 }
 
 @media screen and (max-width: 1200px) {
+
   input.h5.h5,
   textarea.h5.h5,
   select.h5.h5 {
@@ -731,7 +737,7 @@ h5,
 
 h6,
 .h6.h6,
-.text-block.h6 > *,
+.text-block.h6>*,
 .text-block.h6 :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-h6--family);
   font-style: var(--font-h6--style);
@@ -744,6 +750,7 @@ h6,
 }
 
 @media screen and (max-width: 1200px) {
+
   input.h6.h6,
   textarea.h6.h6,
   select.h6.h6 {
@@ -769,7 +776,7 @@ a {
     color var(--animation-speed) var(--animation-easing);
 }
 
-:is(h1, h2, h3, h4, h5, h6, p) > a:hover {
+:is(h1, h2, h3, h4, h5, h6, p)>a:hover {
   color: rgb(var(--color-rgb, var(--color-foreground-rgb)) / 0.7);
 }
 
@@ -1052,8 +1059,9 @@ summary:hover {
 }
 
 @media screen and (min-width: 750px) {
+
   .sticky-content--desktop,
-  .sticky-content--desktop.full-height--desktop > .group-block {
+  .sticky-content--desktop.full-height--desktop>.group-block {
     position: sticky;
     top: var(--sticky-header-offset, 0);
     z-index: var(--layer-flat);
@@ -1102,7 +1110,7 @@ summary:hover {
 
 /* Custom Typography style */
 .custom-typography,
-.custom-typography > * {
+.custom-typography>* {
   font-family: var(--font-family);
   font-weight: var(--font-weight);
   text-transform: var(--text-transform);
@@ -1128,12 +1136,12 @@ summary:hover {
 }
 
 .custom-font-size,
-.custom-font-size > * {
+.custom-font-size>* {
   font-size: var(--font-size);
 }
 
 .custom-font-weight,
-.custom-font-weight > * {
+.custom-font-weight>* {
   font-weight: var(--font-weight);
 }
 
@@ -1188,23 +1196,23 @@ summary:hover {
     flex-wrap: var(--flex-wrap-mobile);
     height: auto;
 
-    > .menu {
+    >.menu {
       flex: 1 1 min-content;
     }
 
-    > .text-block {
+    >.text-block {
       flex: 1 1 var(--max-width--display-tight);
     }
 
-    > .image-block {
+    >.image-block {
       flex: 1 1 var(--size-style-width-mobile-min);
     }
 
-    > .button {
+    >.button {
       flex: 0 0 fit-content;
     }
 
-    > .group-block--height-fill {
+    >.group-block--height-fill {
       height: calc(var(--section-min-height, auto) - var(--section-height-offset, 0px));
     }
   }
@@ -1275,7 +1283,7 @@ summary:hover {
   }
 
   :first-child:is(p, h1, h2, h3, h4, h5, h6),
-  :first-child:empty + :is(p, h1, h2, h3, h4, h5, h6) {
+  :first-child:empty+ :is(p, h1, h2, h3, h4, h5, h6) {
     margin-block-start: 0;
   }
 
@@ -1446,15 +1454,15 @@ input[type='radio'] {
 }
 
 /* Shared styles for radio buttons and checkboxes */
-:where(input[type='radio']) + label,
-:where(input[type='checkbox']) + label {
+:where(input[type='radio'])+label,
+:where(input[type='checkbox'])+label {
   display: inline;
   vertical-align: middle;
   cursor: pointer;
 }
 
-:where(input[type='radio']):disabled + label,
-:where(input[type='checkbox']):disabled + label {
+:where(input[type='radio']):disabled+label,
+:where(input[type='checkbox']):disabled+label {
   color: var(--input-disabled-text-color);
   cursor: not-allowed;
 }
@@ -1656,8 +1664,8 @@ input[type='radio'] {
 
 /* Slideshow Arrow Hover Animation - must stay in base.css for proper CSS cascade */
 
-slideshow-container[animate-arrows]:hover > slideshow-arrows .slideshow-control,
-slideshow-component:focus-within > slideshow-container[animate-arrows] > slideshow-arrows .slideshow-control {
+slideshow-container[animate-arrows]:hover>slideshow-arrows .slideshow-control,
+slideshow-component:focus-within>slideshow-container[animate-arrows]>slideshow-arrows .slideshow-control {
   animation: arrowsSlideIn var(--animation-speed) var(--animation-easing) forwards;
 }
 
@@ -1690,11 +1698,10 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
   display: none;
 }
 
-:where(.section-resource-list.section--full-width) product-card[data-product-transition] > .group-block,
-:where(.section-carousel.section--full-width) product-card[data-product-transition] > .group-block {
+:where(.section-resource-list.section--full-width) product-card[data-product-transition]>.group-block,
+:where(.section-carousel.section--full-width) product-card[data-product-transition]>.group-block {
   @media screen and (max-width: 749px) {
-    padding-inline: max(var(--padding-xs), var(--padding-inline-start))
-      max(var(--padding-xs), var(--padding-inline-end));
+    padding-inline: max(var(--padding-xs), var(--padding-inline-start)) max(var(--padding-xs), var(--padding-inline-end));
   }
 }
 
@@ -1719,15 +1726,15 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
 }
 
 /* Flex behavior for width variants */
-.layout-panel-flex--row > .group-block--width-fit {
+.layout-panel-flex--row>.group-block--width-fit {
   flex: 0;
 }
 
-.layout-panel-flex--row > .group-block--width-fill {
+.layout-panel-flex--row>.group-block--width-fill {
   flex: 1;
 }
 
-.layout-panel-flex--row > .group-block--width-custom {
+.layout-panel-flex--row>.group-block--width-custom {
   flex-basis: var(--size-style-width);
 }
 
@@ -1742,15 +1749,15 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
 }
 
 /* Flex behavior for height variants */
-.layout-panel-flex--column > .group-block--height-fit {
+.layout-panel-flex--column>.group-block--height-fit {
   flex: 0 1 auto;
 }
 
-.layout-panel-flex--column > .group-block--height-fill {
+.layout-panel-flex--column>.group-block--height-fill {
   flex: 1;
 }
 
-.layout-panel-flex--column > .group-block--height-custom {
+.layout-panel-flex--column>.group-block--height-custom {
   flex-basis: var(--size-style-height);
 }
 
@@ -1779,6 +1786,7 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
 
 /* Prevent iOS zoom on input focus by ensuring minimum 16px font size on mobile */
 @media screen and (max-width: 1200px) {
+
   input,
   textarea,
   select,
@@ -1811,7 +1819,8 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
 /* When the header is transparent, and when there is no header-section below it, offset the first main-section with
  * the height of the header
  */
-main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
+main>.shopify-section:first-child .section:not(.disable-section-top-offset) {
+
   &.spacing-style,
   .spacing-style {
     --section-top-offset: calc(var(--header-height) * var(--transparent-header-offset-boolean));
@@ -1826,4 +1835,188 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   .sticky-content {
     margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
   }
+}
+
+/* INDIVA Custom Header Tweaks */
+.list-menu__item[href*="sale" i] {
+  color: #722424 !important;
+}
+
+header-actions.header-actions--text {
+  gap: 25px;
+  align-items: flex-end !important;
+}
+
+header-actions.header-actions--text .desktop\:hidden,
+header-actions.header-actions--text .mobile\:hidden {
+  display: flex !important;
+}
+
+header-actions.header-actions--text .header-actions__action,
+header-actions.header-actions--text .account-button {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+header-actions.header-actions--text .header-actions__text-style {
+  font-size: 0.7rem;
+  line-height: 1;
+  display: block !important;
+}
+
+header-actions.header-actions--text .header-actions__cart-icon {
+  position: relative;
+}
+
+header-actions.header-actions--text .header-actions__cart-icon .cart-bubble {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+}
+
+/* INDIVA Custom Header Overrides - Final Polish */
+header .list-menu__item {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  color: #222 !important;
+}
+
+header .list-menu__item:hover {
+  color: #722424 !important;
+}
+
+header .list-menu__item[href*="sale" i] {
+  color: #722424 !important;
+}
+
+/* Hide native search text/icon completely on desktop since we have the new bar */
+@media screen and (min-width: 990px) {
+  .search-action {
+    display: none !important;
+  }
+}
+
+/* Custom Inline Search Bar Styling */
+.chi-desktop-search {
+  display: none;
+}
+
+@media (min-width: 990px) {
+  .chi-desktop-search {
+    display: block !important;
+    margin-right: 15px;
+  }
+}
+
+.chi-search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.chi-search-input {
+  width: 250px;
+  padding: 10px 15px 10px 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  background-color: #ffffff;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.chi-search-input:focus {
+  border-color: #722424;
+}
+
+.chi-search-submit {
+  position: absolute;
+  left: 12px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Force Shopify Section Group Wrapper to respect the native sticky header state */
+.shopify-section-group-header-group:has(#header-component[sticky='always']),
+.shopify-section-group-header-group:has(#header-component[sticky='scroll-up'][data-sticky-state='active']) {
+  position: sticky !important;
+  top: -1px !important;
+  z-index: 250 !important;
+}
+
+/* Fix Flex Stacking for Cart and Account Icons */
+header-actions.header-actions--text cart-icon,
+header-actions.header-actions--text shopify-account {
+  display: flex !important;
+  flex-direction: column-reverse;
+  /* Put SVG on top, text on bottom */
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* Hide the duplicate menu search inherited by the custom div */
+@media screen and (min-width: 990px) {
+  .chi-desktop-search.search-action--hidden-on-menu {
+    display: none !important;
+  }
+}
+
+/* Refine Cart Bubble to look like the design image */
+header-actions.header-actions--text .header-actions__cart-icon .cart-bubble {
+  position: absolute !important;
+  top: 0px !important;
+  right: 0px !important;
+  width: 18px !important;
+  height: 18px !important;
+  transform: translate(30%, -30%);
+}
+
+header-actions.header-actions--text .cart-bubble__text {
+  font-size: 0.65rem !important;
+}
+
+/* Fix cart SVG mask clipping */
+header-actions.header-actions--text .header-actions__cart-icon.header-actions__cart-icon--has-cart svg {
+  mask: none !important;
+}
+
+/* Adjust bubble position to pin to the SVG instead of the text box bounds */
+header-actions.header-actions--text .header-actions__cart-icon .cart-bubble {
+  top: 0px !important;
+  right: calc(50% - 18px) !important;
+  transform: none !important;
+}
+
+/* Style the bubble to match the brand color */
+header-actions.header-actions--text .header-actions__cart-icon .cart-bubble__background {
+  background-color: #722424 !important;
+}
+
+header-actions.header-actions--text .header-actions__cart-icon .cart-bubble {
+  color: #ffffff !important;
+}
+
+/* Unified Container Class for Custom Sections */
+.container {
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-inline: 16px !important;
+  width: 100% !important;
+}
+
+/* Prevent layout shift / body expansion when modals or cart drawer open */
+html {
+  scrollbar-gutter: stable;
 }

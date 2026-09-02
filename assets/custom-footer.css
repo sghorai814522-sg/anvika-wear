@@ -1,0 +1,312 @@
+.custom-footer {
+  width: 100%;
+  font-family: inherit;
+}
+
+.cf-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Newsletter Section */
+.cf-newsletter {
+  padding: 30px 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+@media (min-width: 768px) {
+  .cf-newsletter {
+    padding: 40px 0;
+  }
+}
+
+.cf-newsletter-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cf-newsletter-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.cf-nl-title {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #1a1a1a;
+  font-family: serif;
+}
+
+.cf-nl-desc {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #333;
+}
+
+.cf-newsletter-form {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cf-form {
+  width: 100%;
+  max-width: 500px;
+}
+
+.cf-input-group {
+  display: flex;
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cf-input {
+  flex: 1;
+  border: none;
+  padding: 15px 20px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.cf-btn {
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 0 25px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: opacity 0.3s ease;
+}
+
+.cf-btn:hover {
+  opacity: 0.9;
+}
+
+.cf-success {
+  margin-top: 10px;
+  color: #2b7a2b;
+  font-size: 0.9rem;
+}
+
+/* Main Footer */
+.cf-main {
+  padding: 60px 0;
+}
+
+.cf-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.cf-col {
+  flex: 1;
+  min-width: 150px;
+}
+
+.cf-col-logo {
+  flex: 1.5;
+  min-width: 250px;
+}
+
+.cf-logo {
+  max-width: 180px;
+  margin-bottom: 20px;
+}
+
+.cf-logo-text {
+  font-size: 1.8rem;
+  font-family: serif;
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+}
+
+.cf-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+
+.cf-social {
+  display: flex;
+  gap: 15px;
+}
+
+.cf-social a {
+  color: inherit;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.cf-social a:hover {
+  opacity: 1;
+}
+
+.cf-col-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+}
+
+.cf-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cf-menu li {
+  margin-bottom: 12px;
+}
+
+.cf-menu a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.cf-menu a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Contact List */
+.cf-col-contact {
+  flex: 1.5;
+}
+
+.cf-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cf-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.cf-contact-list li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cf-contact-list a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cf-contact-list a:hover {
+  text-decoration: underline;
+}
+
+/* Bottom Bar */
+.cf-bottom {
+  padding: 20px 0;
+}
+
+.cf-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cf-copyright {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.cf-payment-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.cf-payment-icons svg {
+  height: 24px;
+  width: auto;
+}
+
+.fallback-payment-icons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cf-newsletter-form {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .cf-newsletter {
+    padding: 25px 0;
+  }
+
+  .cf-newsletter-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cf-newsletter-text,
+  .cf-newsletter-form {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .cf-form {
+    max-width: 100%;
+  }
+
+  .cf-input {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  .cf-btn {
+    padding: 0 16px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  .cf-main {
+    padding: 40px 0;
+  }
+
+  .cf-grid {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .cf-col {
+    width: 100%;
+  }
+
+  .cf-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+}

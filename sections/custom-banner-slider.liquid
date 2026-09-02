@@ -1,0 +1,111 @@
+{{ 'custom-banner-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-banner-slider.js' | asset_url }}" defer="defer"></script>
+
+<div class="custom-banner-slider" data-autoplay="{{ section.settings.auto_play }}" data-speed="{{ section.settings.auto_play_duration | times: 2000 }}">
+  <div class="cbs-wrapper">
+    {%- for block in section.blocks -%}
+      <div class="cbs-slide" {{ block.shopify_attributes }}>
+        {%- if block.settings.banner_link != blank -%}
+          <a href="{{ block.settings.banner_link }}" class="cbs-image-wrapper">
+        {%- else -%}
+          <div class="cbs-image-wrapper">
+        {%- endif -%}
+          {%- if block.settings.image_desktop != blank -%}
+            <img class="cbs-img-desktop {% if block.settings.image_mobile != blank %}cbs-hide-mobile{% endif %}" 
+                 src="{{ block.settings.image_desktop | img_url: 'master' }}" 
+                 alt="{{ block.settings.image_desktop.alt | escape }}" 
+                 loading="lazy">
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg cbs-img-desktop' }}
+          {%- endif -%}
+
+          {%- if block.settings.image_mobile != blank -%}
+            <img class="cbs-img-mobile cbs-hide-desktop" 
+                 src="{{ block.settings.image_mobile | img_url: 'master' }}" 
+                 alt="{{ block.settings.image_mobile.alt | escape }}" 
+                 loading="lazy">
+          {%- endif -%}
+        {%- if block.settings.banner_link != blank -%}
+          </a>
+        {%- else -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.blocks.size > 1 -%}
+    <button class="cbs-arrow cbs-prev" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="cbs-arrow cbs-next" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+    
+    <div class="cbs-dots">
+      {%- for block in section.blocks -%}
+        <button class="cbs-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Custom Banner Slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "label": "Enable Auto Play",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_play_duration",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Auto Play Duration",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Image (Optional)"
+        },
+        {
+          "type": "url",
+          "id": "banner_link",
+          "label": "Banner Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

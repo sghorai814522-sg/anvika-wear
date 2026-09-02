@@ -1,0 +1,57 @@
+.cdb-section {
+  width: 100%;
+  padding: 30px 0;
+}
+
+@media (min-width: 768px) {
+  .cdb-section {
+    padding: 40px 0;
+  }
+}
+
+.cdb-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cdb-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.cdb-item {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cdb-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Only apply hover effect if it is an actual link (anchor tag) */
+a.cdb-link:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.cdb-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .cdb-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}

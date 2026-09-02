@@ -1,0 +1,327 @@
+{{ 'custom-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="custom-footer" style="background-color: {{ section.settings.footer_bg_color }}; color: {{ section.settings.footer_text_color }};">
+  
+  <!-- Newsletter Section -->
+  <div class="cf-newsletter" style="background-color: {{ section.settings.newsletter_bg_color }}; {% if section.settings.newsletter_pattern != blank %}background-image: url('{{ section.settings.newsletter_pattern | img_url: 'master' }}');{% endif %}">
+    <div class="container">
+      <div class="cf-newsletter-inner">
+        <div class="cf-newsletter-text">
+          <h2 class="cf-nl-title">{{ section.settings.newsletter_title }}</h2>
+          <p class="cf-nl-desc">{{ section.settings.newsletter_text }}</p>
+        </div>
+        <div class="cf-newsletter-form">
+          {% form 'customer', class: 'cf-form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="cf-input-group">
+              <input type="email"
+                name="contact[email]"
+                class="cf-input"
+                value="{% if customer %}{{ customer.email }}{% endif %}"
+                placeholder="Enter your email address"
+                required>
+              <button type="submit" class="cf-btn" style="background-color: {{ section.settings.btn_bg_color }};">SUBSCRIBE</button>
+            </div>
+            {% if form.posted_successfully? %}
+              <p class="cf-success">Thanks for subscribing!</p>
+            {% endif %}
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Footer -->
+  <div class="cf-main">
+    <div class="cf-container container">
+      <div class="cf-grid">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'logo_info' %}
+              <div class="cf-col cf-col-logo" {{ block.shopify_attributes }}>
+                {% if block.settings.logo != blank %}
+                  <img src="{{ block.settings.logo | img_url: '400x' }}" alt="{{ shop.name }}" class="cf-logo">
+                {% else %}
+                  <h3 class="cf-logo-text">{{ shop.name }}</h3>
+                {% endif %}
+                
+                {% if block.settings.text != blank %}
+                  <p class="cf-desc">{{ block.settings.text | newline_to_br }}</p>
+                {% endif %}
+
+                {% if block.settings.show_social %}
+                  <div class="cf-social">
+                    {% if block.settings.social_facebook_link != blank %}
+                      <a href="{{ block.settings.social_facebook_link }}" aria-label="Facebook" target="_blank"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.04c-5.5 0-10 4.48-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34v7a10 10 0 0 0 8.44-9.9c0-5.54-4.5-10.02-10-10.02z"/></svg></a>
+                    {% endif %}
+                    {% if block.settings.social_instagram_link != blank %}
+                      <a href="{{ block.settings.social_instagram_link }}" aria-label="Instagram" target="_blank"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.36.88.4.4.66.8.88 1.36.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.88 1.36-.4.4-.8.66-1.36.88-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.36-.88-.4-.4-.66-.8-.88-1.36-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.88-1.36.4-.4.8-.66 1.36-.88.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.27.06-2.14.26-2.9.56-.78.3-1.44.75-2.09 1.4-.65.65-1.1 1.31-1.4 2.09-.3.76-.5 1.63-.56 2.9C0.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.14.56 2.9.3.78.75 1.44 1.4 2.09.65.65 1.31 1.1 2.09 1.4.76.3 1.63.5 2.9.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.14-.26 2.9-.56.78-.3 1.44-.75 2.09-1.4.65-.65 1.1-1.31 1.4-2.09.3-.76.5-1.63.56-2.9C23.99 15.67 24 15.26 24 12s-.01-3.67-.07-4.95c-.06-1.27-.26-2.14-.56-2.9-.3-.78-.75-1.44-1.4-2.09-.65-.65-1.31-1.1-2.09-1.4-.76-.3-1.63-.5-2.9-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-11.44a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
+                    {% endif %}
+                    {% if block.settings.social_youtube_link != blank %}
+                      <a href="{{ block.settings.social_youtube_link }}" aria-label="YouTube" target="_blank"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.5 6.18a3 3 0 0 0-2.11-2.13C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.39.55A3 3 0 0 0 .5 6.18C0 8.07 0 12 0 12s0 3.93.5 5.82a3 3 0 0 0 2.11 2.13C4.48 20.5 12 20.5 12 20.5s7.52 0 9.39-.55a3 3 0 0 0 2.11-2.13C24 15.93 24 12 24 12s0-3.93-.5-5.82zM9.54 15.57V8.43L15.82 12l-6.28 3.57z"/></svg></a>
+                    {% endif %}
+                    {% if block.settings.social_pinterest_link != blank %}
+                      <a href="{{ block.settings.social_pinterest_link }}" aria-label="Pinterest" target="_blank"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0a12 12 0 0 0-4.37 23.17c-.07-.86-.14-2.18.03-3.13.15-.84.99-5.61.99-5.61s-.25-.5-.25-1.25c0-1.17.68-2.05 1.53-2.05.72 0 1.07.54 1.07 1.19 0 .72-.46 1.8-.7 2.8-.2.84.42 1.52 1.25 1.52 1.5 0 2.66-1.58 2.66-3.87 0-2.03-1.46-3.45-3.54-3.45-2.4 0-3.81 1.8-3.81 3.66 0 .72.28 1.49.62 1.91.07.08.08.16.06.25l-.2 1.1c-.02.1-.1.14-.19.09-1.34-.63-2.18-2.6-2.18-4.2 0-3.4 2.47-6.53 7.13-6.53 3.75 0 6.66 2.67 6.66 6.24 0 3.73-2.35 6.72-5.6 6.72-1.1 0-2.13-.57-2.48-1.24l-.68 2.58c-.24.93-.9 2.09-1.35 2.8A12 12 0 1 0 12 0z"/></svg></a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+
+            {% when 'link_list' %}
+              <div class="cf-col cf-col-links" {{ block.shopify_attributes }}>
+                <h4 class="cf-col-title">{{ block.settings.title }}</h4>
+                {% if block.settings.menu != blank %}
+                  <ul class="cf-menu">
+                    {% for link in linklists[block.settings.menu].links %}
+                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+
+            {% when 'contact_info' %}
+              <div class="cf-col cf-col-contact" {{ block.shopify_attributes }}>
+                <h4 class="cf-col-title">{{ block.settings.title }}</h4>
+                <ul class="cf-contact-list">
+                  {% if block.settings.email != blank %}
+                    <li>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                      <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+                    </li>
+                  {% endif %}
+                  {% if block.settings.phone != blank %}
+                    <li>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                      <a href="tel:{{ block.settings.phone }}">{{ block.settings.phone }}</a>
+                    </li>
+                  {% endif %}
+                  {% if block.settings.address != blank %}
+                    <li>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                      <span>{{ block.settings.address }}</span>
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="cf-bottom" style="border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="cf-container container">
+      <div class="cf-bottom-inner">
+        <div class="cf-copyright">
+          &copy; {{ 'now' | date: "%Y" }} {{ section.settings.copyright_text }}
+        </div>
+        {% if section.settings.show_payment_icons %}
+          <div class="cf-payment-icons">
+            {% if section.settings.custom_payment_image != blank %}
+              <img src="{{ section.settings.custom_payment_image | img_url: 'master' }}" alt="Payment Methods" style="max-height: 24px; width: auto; object-fit: contain;">
+            {% else %}
+              {%- for type in shop.enabled_payment_types -%}
+                {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+              {%- endfor -%}
+              
+              {%- if shop.enabled_payment_types == empty -%}
+                <span class="fallback-payment-icons">
+                  <svg viewBox="0 0 38 24" width="38" height="24"><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#000" opacity=".07"/><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32" fill="#FFF"/><path d="M28.3 10.1H28v-.1c0-.1 0-.1.1-.2.2-.1.5-.1.8-.2l-.6-2.5h-1.6l-1 5.3h1.6l.3-1.6c.1 0 .2.1.2.1h.4c1 0 1.4-.4 1.6-1.1.1-.5 0-1-.3-1.4-.3-.4-1-.5-1.2-.5zm-1.1.6h.4c.5 0 .7.3.6.7-.1.5-.6.7-1 .7h-.4l.4-1.4zm6.6-3.1h-1.5L31.3 12h1.6l.3-1.1h1.7l.1 1.1h1.5l-1.6-4.4zm-1.8 2.2l.6-2.1.3 2.1h-.9zm-13.6-2.2l-1.1 5.3h1.6l1.1-5.3h-1.6zm-1.3 2.1c0-.4-.1-.8-.4-1-.3-.2-.8-.3-1.3-.3h-2l-1 5.3h1.5l.3-1.3h.6c1.1 0 1.9-.3 2.1-1.3.1-.4 0-.9-.3-1.1-.2-.2-.5-.3-1.1-.3h-.9l-.3 1.3h.7c.3 0 .6-.1.6-.4zM10.8 7.6h1.5l-1.2 5.3h-1.6l-2-4.1-1 4.1H5L6.6 7.6h1.6l1.8 3.8 1.4-3.8z" fill="#142688"/></svg>
+                  <svg viewBox="0 0 38 24" width="38" height="24"><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#000" opacity=".07"/><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32" fill="#FFF"/><path d="M22.2 11.2c0-2.8-1.5-5.2-3.8-6.3-2.3 1.1-3.8 3.5-3.8 6.3s1.5 5.2 3.8 6.3c2.3-1.1 3.8-3.5 3.8-6.3z" fill="#FF5F00"/><path d="M16 11.2c0 2.8 1.5 5.2 3.8 6.3 1.2-.6 2.3-1.6 3-2.8.7-1.1 1.1-2.4 1.1-3.8 0-1.3-.4-2.6-1.1-3.8-.7-1.2-1.7-2.1-3-2.8-2.2 1.1-3.8 3.5-3.8 6.3z" fill="#EB001B"/><path d="M22.2 11.2c0-1.3-.4-2.6-1.1-3.8-.7-1.2-1.7-2.1-3-2.8-1.2.6-2.3 1.6-3 2.8-.7 1.1-1.1 2.4-1.1 3.8s.4 2.6 1.1 3.8c.7 1.2 1.7 2.1 3 2.8 1.2-.6 2.3-1.6 3-2.8.7-1.1 1.1-2.4 1.1-3.8z" fill="#F79E1B"/></svg>
+                </span>
+              {%- endif -%}
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Newsletter Bar"
+    },
+    {
+      "type": "color",
+      "id": "newsletter_bg_color",
+      "label": "Newsletter Background Color",
+      "default": "#f4dfc7"
+    },
+    {
+      "type": "image_picker",
+      "id": "newsletter_pattern",
+      "label": "Newsletter Background Pattern"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Newsletter Title",
+      "default": "Join Our Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Newsletter Text",
+      "default": "Get exclusive offers, new arrivals and festive updates."
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Subscribe Button Color",
+      "default": "#491717"
+    },
+    {
+      "type": "header",
+      "content": "Main Footer Options"
+    },
+    {
+      "type": "color",
+      "id": "footer_bg_color",
+      "label": "Footer Background Color",
+      "default": "#361111"
+    },
+    {
+      "type": "color",
+      "id": "footer_text_color",
+      "label": "Footer Text Color",
+      "default": "#f6ebd7"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "Indiva. All Rights Reserved."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show Payment Icons",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_payment_image",
+      "label": "Custom Payment Image",
+      "info": "Upload a custom image to override the standard payment icons."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo_info",
+      "name": "Logo & Info",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Indian fashion for the modern you.\nTimeless styles, handcrafted with love."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show Social Icons",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "social_facebook_link",
+          "label": "Facebook Link"
+        },
+        {
+          "type": "url",
+          "id": "social_instagram_link",
+          "label": "Instagram Link"
+        },
+        {
+          "type": "url",
+          "id": "social_youtube_link",
+          "label": "YouTube Link"
+        },
+        {
+          "type": "url",
+          "id": "social_pinterest_link",
+          "label": "Pinterest Link"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Link List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "contact_info",
+      "name": "Contact Info",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Get in Touch"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+          "default": "support@indiva.com"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "+91 98765 43210"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Address",
+          "default": "Kolkata, West Bengal, India"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer",
+      "blocks": [
+        { "type": "logo_info" },
+        { "type": "link_list", "settings": { "title": "Shop" } },
+        { "type": "link_list", "settings": { "title": "Customer Service" } },
+        { "type": "link_list", "settings": { "title": "Company" } },
+        { "type": "link_list", "settings": { "title": "Policies" } },
+        { "type": "contact_info" }
+      ]
+    }
+  ]
+}
+{% endschema %}

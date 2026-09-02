@@ -1,0 +1,381 @@
+/* Custom Header INDIVA Styles */
+
+/* --- Variables & Base --- */
+:root {
+  --chi-color-maroon: #722424; /* Color for SALE and Cart Bubble */
+  --chi-color-gold: #c49a45; /* Tagline color */
+  --chi-color-text: #222222;
+  --chi-color-text-light: #666666;
+  --chi-color-border: #e0e0e0;
+}
+
+/* --- Layout --- */
+.chi-header-wrapper {
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.chi-header-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.chi-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+@media (min-width: 768px) {
+  .chi-header-container {
+    padding: 15px 24px;
+  }
+}
+
+@media (min-width: 990px) {
+  .chi-header-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* --- Logo --- */
+.chi-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.chi-logo-text {
+  font-size: 1.5rem;
+  font-family: serif;
+  color: var(--chi-color-maroon);
+  letter-spacing: 2px;
+  margin-bottom: 3px;
+}
+
+.chi-logo-tagline {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--chi-color-gold);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .chi-logo-text {
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+  }
+  .chi-logo-tagline {
+    font-size: 0.63rem;
+    letter-spacing: 3px;
+  }
+}
+
+@media (min-width: 990px) {
+  .chi-logo-text {
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+}
+
+/* --- Navigation --- */
+.chi-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chi-nav-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--chi-color-text);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.chi-nav-link:hover {
+  color: var(--chi-color-maroon);
+}
+
+.chi-nav-link--sale {
+  color: var(--chi-color-maroon) !important;
+}
+
+/* --- Actions Area --- */
+.chi-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* --- Search --- */
+.chi-search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.chi-search-btn {
+  position: absolute;
+  left: 12px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: var(--chi-color-text-light);
+  cursor: pointer;
+}
+
+.chi-search-input {
+  width: 250px;
+  padding: 10px 15px 10px 40px;
+  border: 1px solid var(--chi-color-border);
+  border-radius: 25px;
+  background-color: #ffffff;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chi-search-input:focus {
+  border-color: var(--chi-color-maroon);
+  box-shadow: 0 0 0 2px rgba(114, 36, 36, 0.1);
+}
+
+/* --- Action Icons (Account, Wishlist, Cart) --- */
+.chi-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--chi-color-maroon);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.chi-action-item svg {
+  color: var(--chi-color-maroon);
+  stroke: var(--chi-color-maroon);
+}
+
+.chi-action-item:hover {
+  opacity: 0.8;
+  color: var(--chi-color-maroon);
+}
+
+.chi-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  transition: transform 0.2s ease;
+}
+
+.chi-action-item:hover .chi-icon-wrapper {
+  transform: scale(1.08);
+}
+
+.chi-action-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--chi-color-maroon);
+  line-height: 1;
+}
+
+/* Cart Bubble Overrides for custom-element */
+.chi-cart-icon-wrapper {
+  display: flex !important; 
+  align-items: center;
+  justify-content: center;
+}
+
+.chi-cart-bubble {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background-color: var(--chi-color-maroon);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: bold;
+  height: 16px;
+  min-width: 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+/* Hide native cart bubble if component renders it */
+.chi-cart-icon-wrapper .cart-bubble {
+  display: none !important;
+}
+
+/* --- Utilities --- */
+.chi-hide-desktop {
+  display: none !important;
+}
+@media (max-width: 989px) {
+  .chi-hide-mobile {
+    display: none !important;
+  }
+  .chi-hide-desktop {
+    display: flex !important;
+  }
+  .chi-actions {
+    gap: 12px;
+  }
+  .chi-mobile-menu-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--chi-color-text);
+  }
+}
+
+@media (max-width: 480px) {
+  .chi-actions {
+    gap: 8px;
+  }
+  .chi-action-text {
+    display: none; /* Hide icon labels on very small screens */
+  }
+  .chi-logo-tagline {
+    display: none; /* Hide tagline on very small phones */
+  }
+}
+
+/* --- Mobile Drawer --- */
+.chi-mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+}
+
+.chi-mobile-drawer.is-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chi-mobile-drawer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.chi-mobile-drawer-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  max-width: 320px;
+  height: 100%;
+  background: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.chi-mobile-drawer.is-active .chi-mobile-drawer-content {
+  transform: translateX(0);
+}
+
+.chi-mobile-drawer-header {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--chi-color-border);
+}
+
+.chi-mobile-close {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--chi-color-text);
+}
+
+.chi-mobile-nav {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chi-mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chi-mobile-nav-item {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.chi-mobile-nav-link {
+  display: block;
+  padding: 11px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--chi-color-text);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+
+.chi-mobile-nav-link:hover {
+  color: var(--chi-color-maroon);
+}
+
+.chi-mobile-nav-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--chi-color-border);
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chi-mobile-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--chi-color-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.chi-mobile-footer-link:hover {
+  color: var(--chi-color-maroon);
+}

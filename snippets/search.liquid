@@ -28,6 +28,19 @@
       </span>
     </button>
   </search-button>
+
+  <!-- Desktop inline search bar (Hidden on mobile) -->
+  <div class="chi-desktop-search{% if class != blank %} {{ class | strip }}{% endif %}">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="chi-search-form">
+      <input type="hidden" name="type" value="product">
+      <button type="submit" class="chi-search-submit" aria-label="{{ 'general.search.submit' | t }}">
+        <span class="svg-wrapper" style="width:16px; height:16px;">
+          {{ 'icon-search.svg' | inline_asset_content }}
+        </span>
+      </button>
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search for sarees, kurtis..." class="chi-search-input">
+    </form>
+  </div>
 {% endunless %}
 
 {% stylesheet %}

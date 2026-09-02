@@ -1,0 +1,155 @@
+.cpc-section {
+  width: 100%;
+  padding: 30px 0px;
+}
+
+@media (min-width: 768px) {
+  .cpc-section {
+    padding: 40px 0px;
+  }
+}
+
+.cpc-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Categories */
+.cpc-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.cpc-category-card {
+  display: block;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.cpc-category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cpc-cat-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Features */
+.cpc-features-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 15px;
+  padding: 25px 30px;
+  border-radius: 4px;
+  overflow-x: auto;
+  /* Allow scrolling on smaller screens */
+}
+
+.cpc-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: max-content;
+}
+
+.cpc-feature-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cpc-feature-icon img,
+.cpc-feature-icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cpc-feature-icon svg {
+  color: #722424;
+  stroke: #722424;
+  transition: transform 0.2s ease;
+}
+
+.cpc-feature-item:hover .cpc-feature-icon svg {
+  transform: scale(1.1);
+}
+
+.cpc-feature-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.cpc-feature-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 3px 0;
+  color: #1a1a1a;
+}
+
+.cpc-feature-text {
+  font-size: 0.8rem;
+  margin: 0;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cpc-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cpc-features-row {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px 16px;
+    gap: 16px;
+    overflow-x: hidden;
+  }
+
+  .cpc-feature-item {
+    min-width: unset;
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+@media (max-width: 480px) {
+  .cpc-categories-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cpc-features-row {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .cpc-feature-item {
+    flex: 0 0 100%;
+  }
+
+  .cpc-feature-title {
+    font-size: 0.85rem;
+  }
+
+  .cpc-feature-text {
+    font-size: 0.75rem;
+  }
+}

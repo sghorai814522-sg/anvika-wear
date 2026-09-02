@@ -1,0 +1,251 @@
+.cfc-section {
+  padding: 30px 0px;
+  width: 100%;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .cfc-section {
+    padding: 50px 0px;
+  }
+}
+
+.cfc-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cfc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.cfc-title {
+  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  margin: 0;
+  color: #1a1a1a;
+  font-family: serif;
+  /* Classic look from screenshot */
+  letter-spacing: 0.5px;
+}
+
+.cfc-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #8c2a32;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.cfc-view-all-arrow {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.cfc-view-all:hover {
+  opacity: 0.7;
+}
+
+.cfc-view-all:hover .cfc-view-all-arrow {
+  transform: translateX(3px);
+}
+
+/* Desktop Grid */
+.cfc-grid-wrapper {
+  width: 100%;
+}
+
+.cfc-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.cfc-product-card {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cfc-product-image-link {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cfc-product-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  /* matches portrait sizing from screenshot */
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cfc-product-image img,
+.cfc-product-image svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.cfc-product-image-link:hover .cfc-product-image img {
+  transform: scale(1.05);
+}
+
+.cfc-product-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cfc-product-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cfc-product-title:hover {
+  color: #8c2a32;
+}
+
+.cfc-product-price-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.cfc-product-price {
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 1rem;
+}
+
+.cfc-product-compare {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+/* Form and button */
+.cfc-add-to-cart-form {
+  margin: 0;
+  margin-top: auto;
+  /* Pushes the button to the bottom of the card */
+}
+
+.cfc-add-to-cart-btn {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #8c2a32;
+  color: white;
+  border: 1px solid #d9c5c5;
+  /* faint reddish border */
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.cfc-add-to-cart-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .cfc-grid-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 15px;
+  }
+
+  .cfc-grid-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cfc-grid {
+    display: flex;
+    width: max-content;
+  }
+
+  .cfc-product-card {
+    width: 200px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    position: relative;
+  }
+}
+
+@media (max-width: 768px) {
+  .cfc-header {
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .cfc-title {
+    font-size: clamp(1.3rem, 5vw, 1.6rem);
+  }
+
+  .cfc-product-card {
+    width: 170px;
+  }
+
+  .cfc-grid {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cfc-product-card {
+    width: 145px;
+  }
+
+  .cfc-product-title {
+    font-size: 0.85rem;
+  }
+
+  .cfc-product-price {
+    font-size: 0.95rem;
+  }
+
+  .cfc-add-to-cart-btn {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+}

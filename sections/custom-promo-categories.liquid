@@ -1,0 +1,196 @@
+{{ 'custom-promo-categories.css' | asset_url | stylesheet_tag }}
+
+<div class="cpc-section" style="background-color: {{ section.settings.section_bg_color }}">
+  <div class="container">
+    
+    <!-- Categories Grid -->
+    <div class="cpc-categories-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'category' -%}
+          <a href="{{ block.settings.link_url }}" class="cpc-category-card" style="background-color: {{ block.settings.bg_color }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <img class="cpc-cat-img" src="{{ block.settings.image | img_url: '600x' }}" alt="{{ block.settings.image.alt }}" loading="lazy">
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg cpc-cat-img' }}
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <!-- Features Row -->
+    {%- assign has_features = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'feature' -%}
+        {%- assign has_features = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if has_features -%}
+      <div class="cpc-features-row" style="background-color: {{ section.settings.features_bg_color }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'feature' -%}
+            <div class="cpc-feature-item" {{ block.shopify_attributes }}>
+              <div class="cpc-feature-icon">
+                {%- if block.settings.icon != blank -%}
+                  <img src="{{ block.settings.icon | img_url: '100x' }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+                {%- else -%}
+                  {%- assign active_icon = block.settings.icon_type -%}
+                  {%- assign title_lower = block.settings.title | downcase -%}
+                  {%- if active_icon == blank or active_icon == 'shipping' -%}
+                    {%- if title_lower contains 'return' -%}
+                      {%- assign active_icon = 'returns' -%}
+                    {%- elsif title_lower contains 'cod' or title_lower contains 'pay' or title_lower contains 'cash' or title_lower contains 'card' -%}
+                      {%- assign active_icon = 'cod' -%}
+                    {%- elsif title_lower contains 'secure' or title_lower contains 'protect' or title_lower contains 'safe' -%}
+                      {%- assign active_icon = 'secure' -%}
+                    {%- elsif title_lower contains 'support' or title_lower contains '24/7' or title_lower contains 'help' -%}
+                      {%- assign active_icon = 'support' -%}
+                    {%- else -%}
+                      {%- assign active_icon = 'shipping' -%}
+                    {%- endif -%}
+                  {%- endif -%}
+
+                  {%- if active_icon == 'returns' -%}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="34" height="34" aria-hidden="true">
+                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                      <path d="M3 3v5h5"/>
+                    </svg>
+                  {%- elsif active_icon == 'cod' -%}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="34" height="34" aria-hidden="true">
+                      <rect x="2" y="5" width="20" height="14" rx="2"/>
+                      <path d="M9 8.5h5.5M9 11.5h4.5M9 8.5v7M12.5 11.5a2.5 2.5 0 0 1 0 4H9"/>
+                    </svg>
+                  {%- elsif active_icon == 'secure' -%}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="34" height="34" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                  {%- elsif active_icon == 'support' -%}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="34" height="34" aria-hidden="true">
+                      <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                    </svg>
+                  {%- else -%}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="34" height="34" aria-hidden="true">
+                      <rect x="1" y="3" width="15" height="13" rx="1"/>
+                      <path d="M16 8h4l3 5v3h-7V8z"/>
+                      <circle cx="5.5" cy="18.5" r="2.5"/>
+                      <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+              <div class="cpc-feature-text-wrap">
+                {%- if block.settings.title != blank -%}
+                  <h4 class="cpc-feature-title">{{ block.settings.title }}</h4>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <p class="cpc-feature-text">{{ block.settings.text }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promo Categories",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "features_bg_color",
+      "label": "Features Bar Background",
+      "default": "#fbf8f5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Card",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Card Background Color",
+          "default": "#efe8df"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Custom Icon Image (overrides SVG below)"
+        },
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "default": "shipping",
+          "options": [
+            { "value": "shipping", "label": "🚚 Free Shipping" },
+            { "value": "returns",  "label": "↩️ Easy Returns" },
+            { "value": "cod",      "label": "💳 COD / Payment" },
+            { "value": "secure",   "label": "🔒 Secure Payment" },
+            { "value": "support",  "label": "📞 24/7 Support" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "On Orders Above ₹1999"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Categories",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "feature", "settings": { "icon_type": "shipping", "title": "Free Shipping",   "text": "On Orders Above ₹1999" } },
+        { "type": "feature", "settings": { "icon_type": "returns",  "title": "Easy Returns",    "text": "Within 7 Days" } },
+        { "type": "feature", "settings": { "icon_type": "cod",      "title": "COD Available",   "text": "On All Orders" } },
+        { "type": "feature", "settings": { "icon_type": "secure",   "title": "Secure Payment",  "text": "100% Protected" } },
+        { "type": "feature", "settings": { "icon_type": "support",  "title": "24/7 Support",    "text": "We're Here for You" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

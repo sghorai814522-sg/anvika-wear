@@ -94,24 +94,26 @@
         {% if customer %}
           <div class="account-button__fallback"></div>
         {% else %}
-          <span
-            slot="signed-out-avatar"
-            class="account-button__text header-actions__text-style {% if display_style == 'icon' %}hidden{% else %}mobile:hidden{% endif %}"
-          >
-            {{ 'content.account_title' | t }}
-          </span>
+          <div slot="signed-out-avatar" class="account-button-wrapper" style="display: flex; flex-direction: column-reverse; align-items: center; justify-content: center; gap: 2px;">
+            <span
+              class="account-button__text header-actions__text-style {% if display_style == 'icon' %}hidden{% else %}mobile:hidden{% endif %}"
+            >
+              {{ 'content.account_title' | t }}
+            </span>
 
-          <span
-            slot="signed-out-avatar"
-            class="{% if display_style != 'icon' %}desktop:hidden{% endif %}"
-            aria-hidden="true"
-          >
-            {{ account_icon }}
-          </span>
+            <span
+              class="{% if display_style != 'icon' %}desktop:hidden{% endif %}"
+              aria-hidden="true"
+            >
+              {{ account_icon }}
+            </span>
+          </div>
         {% endif %}
       </shopify-account>
     </div>
   {% endif %}
+
+
 
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
     <button
@@ -220,10 +222,30 @@
 
   header-actions {
     display: flex;
+    align-items: center;
+    gap: var(--gap-lg, 20px);
 
     @media screen and (max-width: 749px) {
       justify-self: flex-end;
     }
+  }
+
+  .header-actions__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    color: #722424;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .header-actions__action svg {
+    color: #722424;
+  }
+
+  .header-actions__action:hover {
+    color: #722424;
+    opacity: 0.8;
   }
 
   @media screen and (min-width: 750px) {
