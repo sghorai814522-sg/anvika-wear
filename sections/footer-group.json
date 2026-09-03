@@ -11,6 +11,79 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
+    "custom_footer_iJHe8Y": {
+      "type": "custom-footer",
+      "blocks": {
+        "logo_info_jMJVrT": {
+          "type": "logo_info",
+          "settings": {
+            "text": "Indian fashion for the modern you.\nTimeless styles, handcrafted with love.",
+            "show_social": true,
+            "social_facebook_link": "",
+            "social_instagram_link": "",
+            "social_youtube_link": "",
+            "social_pinterest_link": ""
+          }
+        },
+        "link_list_midVp7": {
+          "type": "link_list",
+          "settings": {
+            "title": "Shop",
+            "menu": ""
+          }
+        },
+        "link_list_dTPbR3": {
+          "type": "link_list",
+          "settings": {
+            "title": "Customer Service",
+            "menu": ""
+          }
+        },
+        "link_list_NqVWex": {
+          "type": "link_list",
+          "settings": {
+            "title": "Company",
+            "menu": ""
+          }
+        },
+        "link_list_jCz9hD": {
+          "type": "link_list",
+          "settings": {
+            "title": "Policies",
+            "menu": ""
+          }
+        },
+        "contact_info_LrnEVp": {
+          "type": "contact_info",
+          "settings": {
+            "title": "Get in Touch",
+            "email": "support@indiva.com",
+            "phone": "+91 98765 43210",
+            "address": "Kolkata, West Bengal, India"
+          }
+        }
+      },
+      "block_order": [
+        "logo_info_jMJVrT",
+        "link_list_midVp7",
+        "link_list_dTPbR3",
+        "link_list_NqVWex",
+        "link_list_jCz9hD",
+        "contact_info_LrnEVp"
+      ],
+      "name": "Custom Footer",
+      "settings": {
+        "newsletter_bg_color": "#f4dfc7",
+        "newsletter_title": "Join Our Newsletter",
+        "newsletter_text": "Get exclusive offers, new arrivals and festive updates.",
+        "btn_bg_color": "#491717",
+        "footer_bg_color": "#361111",
+        "footer_text_color": "#f6ebd7",
+        "copyright_text": "Indiva. All Rights Reserved.",
+        "show_payment_icons": true,
+        "custom_payment_image": "shopify://shop_images/payment_icons_in_launch_demo_footer.png"
+      }
+    },
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
@@ -32,17 +105,21 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
+            "background_color": "",
             "video_position": "cover",
             "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
             "toggle_overlay": false,
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
             "open_in_new_tab": false,
+            "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -63,6 +140,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -87,6 +165,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -108,6 +187,8 @@
           "settings": {
             "width": "fill",
             "custom_width": 100,
+            "heading": "",
+            "heading_text_color": "",
             "heading_preset": "h3",
             "border_style": "all",
             "input_style": "custom",
@@ -118,6 +199,10 @@
             "input_border_color": "{{ settings.color_palette.color2 }}",
             "input_type_preset": "paragraph",
             "style_class": "button-unstyled",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
             "display_type": "arrow",
             "label": "Sign up",
             "integrated_button": true,
@@ -134,6 +219,7 @@
         "group_H6VpwJ",
         "email_signup_crihX7"
       ],
+      "disabled": true,
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
@@ -150,6 +236,7 @@
           "type": "footer-copyright",
           "settings": {
             "show_powered_by": true,
+            "text_color": "",
             "font_size": "0.75rem",
             "case": "none"
           },
@@ -158,6 +245,7 @@
         "footer_policy_list_VCdnpa": {
           "type": "footer-policy-list",
           "settings": {
+            "text_color": "",
             "font_size": "0.75rem",
             "case": "none"
           },
@@ -166,11 +254,20 @@
         "social_links_Ew63Kq": {
           "type": "social-links",
           "settings": {
+            "icon_color": "",
             "facebook_url": "https://www.facebook.com/",
             "instagram_url": "https://www.instagram.com/",
             "youtube_url": "https://www.youtube.com/",
             "tiktok_url": "https://www.tiktok.com/",
-            "twitter_url": "https://x.com/"
+            "twitter_url": "https://x.com/",
+            "threads_url": "",
+            "linkedin_url": "",
+            "bluesky_url": "",
+            "snapchat_url": "",
+            "pinterest_url": "",
+            "tumblr_url": "",
+            "vimeo_url": "",
+            "custom_url": ""
           },
           "blocks": {}
         }
@@ -180,19 +277,21 @@
         "footer_policy_list_VCdnpa",
         "social_links_Ew63Kq"
       ],
+      "disabled": true,
       "name": "t:names.utilities",
       "settings": {
         "section_width": "page-width",
         "gap": 24,
+        "background_color": "{{ settings.color_palette.background }}",
         "divider_thickness": 1,
         "divider_color": "{{ settings.color_palette.color2 }}",
-        "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 20,
         "padding-block-end": 48
       }
     }
   },
   "order": [
+    "custom_footer_iJHe8Y",
     "footer_m9NzUG",
     "footer_utilities_jLGE8U"
   ]

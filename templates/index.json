@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "hero_jVaWmY": {
       "type": "hero",
@@ -16,7 +17,6 @@
           "name": "t:names.heading",
           "settings": {
             "text": "<p>Browse our latest products</p>",
-            "text_color": "{{ settings.color_palette.background }}",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -27,6 +27,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.background }}",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -48,6 +49,7 @@
             "custom_button_background": "rgba(0,0,0,0)",
             "custom_button_text": "{{ settings.color_palette.background }}",
             "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -60,6 +62,7 @@
         "text_YLPk4p",
         "button_H9gpTf"
       ],
+      "disabled": true,
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -68,6 +71,7 @@
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
+        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -114,11 +118,13 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
+            "background_color": "",
             "video_position": "cover",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -136,10 +142,12 @@
                 "alignment": "left",
                 "type_preset": "h4",
                 "font": "var(--font-body--family)",
+                "font_size": "1rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -157,6 +165,10 @@
                 "label": "View all",
                 "open_in_new_tab": false,
                 "style_class": "link",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
                 "width": "fit-content",
                 "custom_width": 100,
                 "width_mobile": "fit-content",
@@ -176,9 +188,11 @@
           "static": true,
           "settings": {
             "product_card_gap": 4,
+            "background_color": "",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -194,6 +208,7 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
+                "border_color": "",
                 "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -216,6 +231,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -241,6 +257,7 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
+                "text_color": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -256,6 +273,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.product_list",
       "settings": {
         "collection": "all",
@@ -276,10 +294,247 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "custom_banner_slider_K4QCef": {
+      "type": "custom-banner-slider",
+      "blocks": {
+        "slide_z76eyf": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/banner_1.png",
+            "banner_link": ""
+          }
+        },
+        "slide_VpjiwK": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/banner_2.png",
+            "banner_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_z76eyf",
+        "slide_VpjiwK"
+      ],
+      "name": "Custom Banner Slider",
+      "settings": {
+        "auto_play": true,
+        "auto_play_duration": 5
+      }
+    },
+    "custom_promo_categories_wNPdbw": {
+      "type": "custom-promo-categories",
+      "blocks": {
+        "category_KrA3Y7": {
+          "type": "category",
+          "settings": {
+            "link_url": "",
+            "image": "shopify://shop_images/women.png",
+            "bg_color": "#efe8df"
+          }
+        },
+        "category_wQH7qk": {
+          "type": "category",
+          "settings": {
+            "link_url": "",
+            "image": "shopify://shop_images/mens.png",
+            "bg_color": "#efe8df"
+          }
+        },
+        "category_BUT6wm": {
+          "type": "category",
+          "settings": {
+            "link_url": "",
+            "image": "shopify://shop_images/kids.png",
+            "bg_color": "#efe8df"
+          }
+        },
+        "feature_VrWQXD": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "shipping",
+            "title": "Free Shipping",
+            "text": "On Orders Above ₹1999"
+          }
+        },
+        "feature_QcM6Eb": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "returns",
+            "title": "Easy Returns",
+            "text": "Within 7 Days"
+          }
+        },
+        "feature_Derrig": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "cod",
+            "title": "COD Available",
+            "text": "On All Orders"
+          }
+        },
+        "feature_8qnqi4": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "secure",
+            "title": "Secure Payment",
+            "text": "100% Protected"
+          }
+        },
+        "feature_6GLM7K": {
+          "type": "feature",
+          "settings": {
+            "icon_type": "support",
+            "title": "24/7 Support",
+            "text": "We're Here for You"
+          }
+        }
+      },
+      "block_order": [
+        "category_KrA3Y7",
+        "category_wQH7qk",
+        "category_BUT6wm",
+        "feature_VrWQXD",
+        "feature_QcM6Eb",
+        "feature_Derrig",
+        "feature_8qnqi4",
+        "feature_6GLM7K"
+      ],
+      "name": "Promo Categories",
+      "settings": {
+        "section_bg_color": "#ffffff",
+        "features_bg_color": "#fbf8f5"
+      }
+    },
+    "custom_featured_collection_4KYmDK": {
+      "type": "custom-featured-collection",
+      "name": "Custom Product Grid",
+      "settings": {
+        "title": "New Arrivals",
+        "view_all_text": "View All",
+        "view_all_link": "",
+        "collection": "new-arrivals",
+        "product_limit": 6
+      }
+    },
+    "custom_circle_slider_3h8GcK": {
+      "type": "custom-circle-slider",
+      "blocks": {
+        "collection_wkcTgf": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/top-selling-pure-linen-with-hand-block-printing-mustard-yellow-with-dual-color-border-orange-and-pink-7989045_900x_305322f7-c925-4f0b-b56a-2b0908735e1c.webp",
+            "title": "Sarees",
+            "link": ""
+          }
+        },
+        "collection_bhFUaP": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/KA-1345.jpg",
+            "title": "Salwar Suits",
+            "link": ""
+          }
+        },
+        "collection_QKbErE": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/shubh-designer-high-quality-pure-mul-cotton-handloom-saree-maroon-3797621_900x_3edd574a-c26f-45b4-8d8a-cdc2679f30fc.webp",
+            "title": "Lehenga",
+            "link": ""
+          }
+        },
+        "collection_WbwQwf": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ka-1360-5_c112663e-4251-4bdb-ba0f-61b371896253.jpg",
+            "title": "Kurtis",
+            "link": ""
+          }
+        },
+        "collection_NMkTmy": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ka-1361-7_5b56edc3-1d16-4f96-b8bf-9aa21b01f577.jpg",
+            "title": "Sherwani",
+            "link": ""
+          }
+        },
+        "collection_bKPUGa": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/KA-1361.jpg",
+            "title": "Indo-Western",
+            "link": ""
+          }
+        },
+        "collection_M4z7nq": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ka-1414-2_3147e5f9-c9f2-450c-a201-13e2331ba426.jpg",
+            "title": "Ethnic Gowns",
+            "link": ""
+          }
+        },
+        "collection_qxRm8f": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ka-1361-6_0305ce86-e8cf-4d01-a5d1-dbf31aacdb65.jpg",
+            "title": "Co-Ord Sets",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_wkcTgf",
+        "collection_bhFUaP",
+        "collection_QKbErE",
+        "collection_WbwQwf",
+        "collection_NMkTmy",
+        "collection_bKPUGa",
+        "collection_M4z7nq",
+        "collection_qxRm8f"
+      ],
+      "name": "Circle Collection Slider",
+      "settings": {
+        "title": "Trending Collection",
+        "view_all_text": "View All",
+        "view_all_link": "",
+        "auto_play": true,
+        "auto_play_speed": 3
+      }
+    },
+    "custom_dual_banner_KJdA7A": {
+      "type": "custom-dual-banner",
+      "name": "Dual Image Banners",
+      "settings": {
+        "image_1": "shopify://shop_images/weeding.png",
+        "link_1": "",
+        "image_2": "shopify://shop_images/festive.png",
+        "link_2": ""
+      }
+    },
+    "custom_featured_collection_H8Nf8E": {
+      "type": "custom-featured-collection",
+      "name": "Custom Product Grid",
+      "settings": {
+        "title": "Best Sellers",
+        "view_all_text": "View All",
+        "view_all_link": "",
+        "collection": "new-arrivals",
+        "product_limit": 6
+      }
     }
   },
   "order": [
     "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "custom_banner_slider_K4QCef",
+    "custom_promo_categories_wNPdbw",
+    "custom_featured_collection_4KYmDK",
+    "custom_circle_slider_3h8GcK",
+    "custom_dual_banner_KJdA7A",
+    "custom_featured_collection_H8Nf8E"
   ]
 }
