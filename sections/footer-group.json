@@ -29,28 +29,28 @@
           "type": "link_list",
           "settings": {
             "title": "Shop",
-            "menu": ""
+            "menu": "main-menu"
           }
         },
         "link_list_dTPbR3": {
           "type": "link_list",
           "settings": {
             "title": "Customer Service",
-            "menu": ""
+            "menu": "footer"
           }
         },
         "link_list_NqVWex": {
           "type": "link_list",
           "settings": {
             "title": "Company",
-            "menu": ""
+            "menu": "company"
           }
         },
         "link_list_jCz9hD": {
           "type": "link_list",
           "settings": {
             "title": "Policies",
-            "menu": ""
+            "menu": "policies"
           }
         },
         "contact_info_LrnEVp": {
