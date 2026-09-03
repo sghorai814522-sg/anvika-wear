@@ -424,7 +424,7 @@
         "collection_wkcTgf": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/top-selling-pure-linen-with-hand-block-printing-mustard-yellow-with-dual-color-border-orange-and-pink-7989045_900x_305322f7-c925-4f0b-b56a-2b0908735e1c.webp",
+            "image": "shopify://shop_images/mitti-ke-rang-ajrakh-bandhani-handblock-printed-modal-silk-saree-in-red-7173155_900x_e9170e17-4d16-4ca4-b11d-ea125d7e0380.webp",
             "title": "Sarees",
             "link": ""
           }
@@ -432,7 +432,6 @@
         "collection_bhFUaP": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/KA-1345.jpg",
             "title": "Salwar Suits",
             "link": ""
           }
@@ -440,7 +439,6 @@
         "collection_QKbErE": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/shubh-designer-high-quality-pure-mul-cotton-handloom-saree-maroon-3797621_900x_3edd574a-c26f-45b4-8d8a-cdc2679f30fc.webp",
             "title": "Lehenga",
             "link": ""
           }
@@ -448,7 +446,6 @@
         "collection_WbwQwf": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/ka-1360-5_c112663e-4251-4bdb-ba0f-61b371896253.jpg",
             "title": "Kurtis",
             "link": ""
           }
@@ -456,7 +453,6 @@
         "collection_NMkTmy": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/ka-1361-7_5b56edc3-1d16-4f96-b8bf-9aa21b01f577.jpg",
             "title": "Sherwani",
             "link": ""
           }
@@ -464,7 +460,6 @@
         "collection_bKPUGa": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/KA-1361.jpg",
             "title": "Indo-Western",
             "link": ""
           }
@@ -472,7 +467,6 @@
         "collection_M4z7nq": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/ka-1414-2_3147e5f9-c9f2-450c-a201-13e2331ba426.jpg",
             "title": "Ethnic Gowns",
             "link": ""
           }
@@ -480,7 +474,6 @@
         "collection_qxRm8f": {
           "type": "collection",
           "settings": {
-            "image": "shopify://shop_images/ka-1361-6_0305ce86-e8cf-4d01-a5d1-dbf31aacdb65.jpg",
             "title": "Co-Ord Sets",
             "link": ""
           }
@@ -509,9 +502,9 @@
       "type": "custom-dual-banner",
       "name": "Dual Image Banners",
       "settings": {
-        "image_1": "shopify://shop_images/weeding.png",
+        "image_1": "shopify://shop_images/festive.png",
         "link_1": "",
-        "image_2": "shopify://shop_images/festive.png",
+        "image_2": "shopify://shop_images/weeding.png",
         "link_2": ""
       }
     },
@@ -546,7 +539,6 @@
           "type": "review",
           "settings": {
             "card_style": "image",
-            "image": "shopify://shop_images/ka-1360-1_9cae9e74-53fa-41da-ac49-6d16fe01779b.jpg",
             "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
             "full_review_text": "",
             "read_more_link": "",
@@ -560,7 +552,6 @@
           "type": "review",
           "settings": {
             "card_style": "image",
-            "image": "shopify://shop_images/VMISareeImage8Deccopy2.webp",
             "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
             "full_review_text": "",
             "read_more_link": "",
@@ -574,7 +565,6 @@
           "type": "review",
           "settings": {
             "card_style": "image",
-            "image": "shopify://shop_images/ka-1414-3_81aa03fa-4c13-443e-8d68-30647b05d699.jpg",
             "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
             "full_review_text": "",
             "read_more_link": "",
