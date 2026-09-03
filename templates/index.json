@@ -414,7 +414,7 @@
         "title": "New Arrivals",
         "view_all_text": "View All",
         "view_all_link": "",
-        "collection": "new-arrivals",
+        "collection": "best-sellers",
         "product_limit": 6
       }
     },
@@ -432,6 +432,7 @@
         "collection_bhFUaP": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/ka-1447-1_0ec0f983-3cb6-4272-acfa-ce675049c3b9.jpg",
             "title": "Salwar Suits",
             "link": ""
           }
@@ -439,6 +440,7 @@
         "collection_QKbErE": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/gaurangi-garbhreshmi-handloom-cotton-silk-saree-with-golden-border-in-exclusive-royal-green-7558118_900x_32bcdbb6-8238-42b6-ab53-8c31e03bf3e0.webp",
             "title": "Lehenga",
             "link": ""
           }
@@ -446,6 +448,7 @@
         "collection_WbwQwf": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/ka-1345-6_6f8b2e54-d29e-4859-b1a0-12a3f7987935.jpg",
             "title": "Kurtis",
             "link": ""
           }
@@ -453,6 +456,7 @@
         "collection_NMkTmy": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/ka-1414-1_e8ab2bd1-874a-4939-96a7-7bdee4791e01.jpg",
             "title": "Sherwani",
             "link": ""
           }
@@ -460,6 +464,7 @@
         "collection_bKPUGa": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/ka-1360-7_693d4ae4-40ae-40e1-bdd1-1049292c0a22.jpg",
             "title": "Indo-Western",
             "link": ""
           }
@@ -467,6 +472,7 @@
         "collection_M4z7nq": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/DSC_7057.webp",
             "title": "Ethnic Gowns",
             "link": ""
           }
@@ -474,6 +480,7 @@
         "collection_qxRm8f": {
           "type": "collection",
           "settings": {
+            "image": "shopify://shop_images/ka-1361-7_5b56edc3-1d16-4f96-b8bf-9aa21b01f577.jpg",
             "title": "Co-Ord Sets",
             "link": ""
           }
@@ -515,7 +522,7 @@
         "title": "Best Sellers",
         "view_all_text": "View All",
         "view_all_link": "",
-        "collection": "new-arrivals",
+        "collection": "best-sellers",
         "product_limit": 6
       }
     },
