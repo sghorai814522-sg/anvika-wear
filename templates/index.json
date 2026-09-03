@@ -525,6 +525,92 @@
         "collection": "new-arrivals",
         "product_limit": 6
       }
+    },
+    "draped_with_love_hiNHYV": {
+      "type": "draped-with-love",
+      "blocks": {
+        "review_hnEVLy": {
+          "type": "review",
+          "settings": {
+            "card_style": "text",
+            "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
+            "full_review_text": "",
+            "read_more_link": "",
+            "author_name": "Kanchan T.",
+            "date": "4 November 2025",
+            "rating": 5,
+            "is_tall": false
+          }
+        },
+        "review_j7RFhJ": {
+          "type": "review",
+          "settings": {
+            "card_style": "image",
+            "image": "shopify://shop_images/ka-1360-1_9cae9e74-53fa-41da-ac49-6d16fe01779b.jpg",
+            "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
+            "full_review_text": "",
+            "read_more_link": "",
+            "author_name": "Kanchan T.",
+            "date": "4 November 2025",
+            "rating": 5,
+            "is_tall": false
+          }
+        },
+        "review_H37gqk": {
+          "type": "review",
+          "settings": {
+            "card_style": "image",
+            "image": "shopify://shop_images/VMISareeImage8Deccopy2.webp",
+            "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
+            "full_review_text": "",
+            "read_more_link": "",
+            "author_name": "Kanchan T.",
+            "date": "4 November 2025",
+            "rating": 5,
+            "is_tall": true
+          }
+        },
+        "review_394Qdi": {
+          "type": "review",
+          "settings": {
+            "card_style": "image",
+            "image": "shopify://shop_images/ka-1414-3_81aa03fa-4c13-443e-8d68-30647b05d699.jpg",
+            "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
+            "full_review_text": "",
+            "read_more_link": "",
+            "author_name": "Kanchan T.",
+            "date": "4 November 2025",
+            "rating": 5,
+            "is_tall": false
+          }
+        },
+        "review_6Rgc4W": {
+          "type": "review",
+          "settings": {
+            "card_style": "text",
+            "review_text": "Suta Sarees Are Always Comfortable To Drape Elegance And Comfort When You Wear It For Long Hours ...",
+            "full_review_text": "",
+            "read_more_link": "",
+            "author_name": "Kanchan T.",
+            "date": "4 November 2025",
+            "rating": 5,
+            "is_tall": false
+          }
+        }
+      },
+      "block_order": [
+        "review_hnEVLy",
+        "review_j7RFhJ",
+        "review_H37gqk",
+        "review_394Qdi",
+        "review_6Rgc4W"
+      ],
+      "name": "Draped With Love",
+      "settings": {
+        "title": "Draped With Love",
+        "subtitle": "test",
+        "text_alignment": "center"
+      }
     }
   },
   "order": [
@@ -535,6 +621,7 @@
     "custom_featured_collection_4KYmDK",
     "custom_circle_slider_3h8GcK",
     "custom_dual_banner_KJdA7A",
-    "custom_featured_collection_H8Nf8E"
+    "custom_featured_collection_H8Nf8E",
+    "draped_with_love_hiNHYV"
   ]
 }
