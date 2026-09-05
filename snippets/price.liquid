@@ -74,7 +74,7 @@
   endif
 -%}
 
-<div ref="priceContainer">
+<div ref="priceContainer" class="price-container-custom">
   {% if has_volume_pricing %}
     {% comment %} Volume pricing display {% endcomment %}
     {% if show_compare_price %}
@@ -90,6 +90,14 @@
   {% else %}
     {% comment %} Standard pricing display: render only the active branch (regular or sale) {% endcomment %}
     {% if show_compare_price %}
+      {% liquid
+        assign raw_price = selected_variant.price
+        assign raw_compare = selected_variant.compare_at_price
+        assign discount_percent = 0
+        if raw_compare > raw_price
+          assign discount_percent = raw_compare | minus: raw_price | times: 100 | divided_by: raw_compare
+        endif
+      %}
       {% if show_sale_price_first %}
         <span class="price-item__group price">
           <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
@@ -99,6 +107,9 @@
           <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
           {{- compare_at_price -}}
         </span>
+        {% if discount_percent > 0 %}
+          <span class="price-discount-tag">({{ discount_percent }}% OFF)</span>
+        {% endif %}
       {% else %}
         <span class="price-item__group price-item--regular compare-at-price">
           <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
@@ -108,6 +119,9 @@
           <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
           {{ price | default: '&nbsp;' }}
         </span>
+        {% if discount_percent > 0 %}
+          <span class="price-discount-tag">({{ discount_percent }}% OFF)</span>
+        {% endif %}
       {% endif %}
     {% else %}
       <span class="price">{{ price | default: '&nbsp;' }}</span>

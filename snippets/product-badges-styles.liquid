@@ -18,14 +18,11 @@
     left: calc(var(--badge-inset) + var(--padding-inline-start));
   }
 
+  .product-badges--top-right,
   .product-badges--top-left {
-    top: calc(var(--badge-inset) + var(--padding-block-start));
-    left: calc(var(--badge-inset) + var(--padding-inline-start));
-  }
-
-  .product-badges--top-right {
-    top: calc(var(--badge-inset) + var(--padding-block-start));
-    right: calc(var(--badge-inset) + var(--padding-inline-start));
+    top: calc(var(--badge-inset) + var(--padding-block-start)) !important;
+    left: calc(var(--badge-inset) + var(--padding-inline-start)) !important;
+    right: auto !important;
   }
 
   .product-badges__badge {

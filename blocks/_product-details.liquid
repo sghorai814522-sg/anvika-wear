@@ -19,12 +19,12 @@
   {% endif %}
 >
   {% capture children %}
-    <div class="view-product-title">
-      <a
-        href="{{ closest.product.selected_or_first_available_variant.url }}"
-      >
-        {{- closest.product.title }}
-      </a>
+    <h1 class="custom-product-main-title">
+      {{ closest.product.title }}
+    </h1>
+    <div class="product-rating-row">
+      <span class="product-rating-stars">★★★★☆</span>
+      <span class="product-rating-text">4.8 (128 Reviews)</span>
     </div>
     {% content_for 'blocks' %}
   {% endcapture %}

@@ -1,0 +1,744 @@
+/* ==========================================================================
+   Custom Collection List Page & Product Grid Design (Product Details Alignment Fix)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Global Container Width & Prevent Horizontal Overflow */
+body {
+  overflow-x: hidden;
+}
+
+.product-grid-container,
+.main-collection-grid,
+.collection-wrapper {
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. Collection Heading & Flourish Line
+   -------------------------------------------------------------------------- */
+.custom-collection-header {
+  text-align: center;
+  padding: 10px 0 16px 0;
+  margin: 0 auto 16px auto;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.custom-collection-title {
+  font-family: "Cinzel", "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #111111;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.custom-collection-flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.custom-collection-flourish .flourish-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200, 180, 160, 0.15), rgba(140, 88, 76, 0.5), rgba(200, 180, 160, 0.15));
+}
+
+.custom-collection-flourish .flourish-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8c584c;
+}
+
+/* Hide duplicate section title if rendered by theme block */
+.section-wrapper .text-block h1 {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Toolbar / Filter Controls
+   -------------------------------------------------------------------------- */
+.facets-controls-wrapper,
+.facets-block-wrapper,
+.facets-toggle,
+.facets--horizontal {
+  border-top: 1px solid #eeeeee !important;
+  border-bottom: 1px solid #eeeeee !important;
+  padding-block: 12px !important;
+  margin-bottom: 24px !important;
+  position: relative;
+  z-index: 5 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.products-count-wrapper {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #555555 !important;
+}
+
+.sorting-filter select,
+.custom-sort-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #ffffff !important;
+  border: 1px solid #dcdcdc !important;
+  border-radius: 6px !important;
+  padding: 8px 32px 8px 14px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #222222 !important;
+}
+
+.grid-density-controls button {
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.grid-toggle-btn:hover,
+.grid-toggle-btn.active,
+.grid-density-controls button:is(:hover, [aria-checked="true"], .active) {
+  border-color: #8c252c !important;
+  color: #8c252c !important;
+  background-color: #fdf8f8 !important;
+}
+
+/* Sidebar Filters Z-Index Fix */
+.facets-block-wrapper--vertical,
+.facets--vertical,
+.facets__panel {
+  position: relative;
+  z-index: 6 !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Product Grid Layout (Desktop & Tablet)
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 1200px) {
+  .product-grid,
+  .product-grid--grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 24px 16px !important;
+  }
+}
+
+@media screen and (max-width: 1199px) and (min-width: 990px) {
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 20px 14px !important;
+  }
+}
+
+@media screen and (max-width: 989px) and (min-width: 750px) {
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px 12px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Product Card & Tall 3:4 Portrait Image Gallery
+   -------------------------------------------------------------------------- */
+.product-grid__item {
+  border: none !important;
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card {
+  border: none !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  transition: transform 0.25s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+.product-card:hover {
+  transform: translateY(-2px) !important;
+}
+
+/* Force tall 3:4 aspect ratio with top-center object position */
+.card-gallery,
+.card-gallery .slideshow-component,
+.card-gallery .slideshow-slide,
+.card-gallery .product-media-container,
+.product-media-container,
+.product-grid .product-media,
+.product-card .card-gallery {
+  --gallery-aspect-ratio: 3 / 4 !important;
+  --media-preview-ratio: 3 / 4 !important;
+  aspect-ratio: 3 / 4 !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  padding-bottom: 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  background-color: #f4f4f4 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.card-gallery img,
+.card-gallery .product-media-container img,
+.product-media-container img,
+.product-card img,
+.card-gallery svg {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 3 / 4 !important;
+  object-fit: cover !important;
+  object-position: top center !important; /* Ensures full model/dress is visible from top */
+  border-radius: 8px !important;
+  transition: transform 0.4s ease !important;
+}
+
+.product-card:hover .card-gallery img,
+.product-card:hover img {
+  transform: scale(1.04) !important;
+}
+
+/* Badges (Strict Top-Left Pill Badges across all grids & recommendations) */
+.product-badges,
+.product-badges--top-right,
+.product-badges--top-left,
+.card-gallery .product-badges,
+.card-gallery--badge-top-right .product-badges,
+.card-gallery--badge-top-left .product-badges,
+.product-recommendations .product-badges,
+.product-recommendations .product-badges--top-right,
+.resource-list .product-badges,
+.resource-list .product-badges--top-right,
+.badge,
+.badge--onsale,
+.price__badge-sale {
+  position: absolute !important;
+  top: 10px !important;
+  left: 10px !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 5 !important;
+  margin: 0 !important;
+}
+
+/* Wishlist Heart Icon (Strict Top-Right across all grids & recommendations) */
+.card-gallery .wishlist-btn,
+.product-card .wishlist-btn,
+.product-grid__item .wishlist-btn,
+.resource-list__item .wishlist-btn,
+.product-recommendations .wishlist-btn,
+.product-card [data-wishlist-btn],
+.swym-button,
+.swym-add-to-wishlist {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 6 !important;
+}
+
+
+
+.product-badges__badge {
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+}
+
+.color-custom-badge-sale {
+  background-color: #922020 !important;
+  color: #ffffff !important;
+}
+
+.color-custom-badge-sold-out {
+  background-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Product Card Details & Strict Left Alignment Fix
+   -------------------------------------------------------------------------- */
+.product-grid__item {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  justify-content: space-between !important;
+}
+
+.product-grid__card,
+.product-card .product-grid__card,
+.product-card__content {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  gap: 4px !important;
+  padding: 8px 0 0 0 !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+/* Uniform Title Height & Clamping across all products */
+.product-card product-title,
+.product-card .text-block,
+.product-card h3,
+.product-card p,
+.product-card .product-card__title,
+.product-card .card-title {
+  text-align: left !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  height: 2.7em !important;
+  min-height: 2.7em !important;
+  max-height: 2.7em !important;
+}
+
+.product-card .text-block a,
+.product-card h3 a,
+.product-card p a,
+.product-card product-title a {
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+  text-align: left !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.product-card .text-block a:hover,
+.product-card h3 a:hover,
+.product-card product-title a:hover {
+  color: #8c252c !important;
+}
+
+/* Price Row Alignment (Single Clean Line & Equal Alignment) */
+product-price,
+.product-card product-price,
+.product-card .price-container-custom {
+  margin-top: auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  width: 100% !important;
+  text-align: left !important;
+  min-height: 22px !important;
+}
+
+product-price > div,
+.price-container-custom {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  width: 100% !important;
+}
+
+.product-card .price-item__group.price,
+.product-card .price {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #111111 !important;
+  margin: 0 !important;
+  display: inline-block !important;
+}
+
+.product-card .compare-at-price,
+.product-card .price-item--regular {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #888888 !important;
+  text-decoration: line-through !important;
+  margin: 0 !important;
+  display: inline-block !important;
+}
+
+.price-discount-tag {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #b91c1c !important;
+  margin: 0 !important;
+  display: inline-block !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Mobile View Optimizations (@media max-width: 749px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 749px) {
+  .facets-block-wrapper--vertical,
+  .facets--vertical {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .collection-wrapper,
+  .main-collection-grid,
+  .product-grid-container {
+    display: block !important;
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .custom-collection-header {
+    padding: 10px 0 10px 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .custom-collection-title {
+    font-size: 22px !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .custom-collection-flourish {
+    max-width: 280px !important;
+  }
+
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 12px 10px !important;
+  }
+
+  .product-grid__item {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .card-gallery,
+  .card-gallery .slideshow-component,
+  .card-gallery .slideshow-slide,
+  .card-gallery .product-media-container,
+  .product-media-container,
+  .product-grid .product-media,
+  .product-card .card-gallery {
+    aspect-ratio: 3 / 4 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: unset !important;
+    border-radius: 6px !important;
+  }
+
+  .product-card product-title,
+  .product-card .text-block,
+  .product-card h3,
+  .product-card p {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    height: 2.5em !important;
+    min-height: 2.5em !important;
+    max-height: 2.5em !important;
+  }
+
+  .product-card .price-item__group.price,
+  .product-card .price {
+    font-size: 13px !important;
+  }
+
+  .product-card .compare-at-price,
+  .product-card .price-item--regular {
+    font-size: 11px !important;
+  }
+
+  .price-discount-tag {
+    font-size: 11px !important;
+  }
+
+  .price-container-custom {
+    gap: 4px !important;
+  }
+
+  .facets-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 8px 10px !important;
+    margin-bottom: 12px !important;
+    border-top: 1px solid #eeeeee !important;
+    border-bottom: 1px solid #eeeeee !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Pagination Component
+   -------------------------------------------------------------------------- */
+.pagination {
+  display: flex !important;
+  justify-content: center !important;
+  padding: 32px 0 16px 0 !important;
+}
+
+.pagination__list {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.pagination__item {
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pagination__link {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 4px !important;
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.pagination__link:hover {
+  border-color: #8c252c !important;
+  color: #8c252c !important;
+  background-color: #fdf8f8 !important;
+}
+
+.pagination__link--current,
+.pagination__link[aria-current='page'] {
+  background-color: #4a151b !important;
+  border-color: #4a151b !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+@supports (anchor-name: --pagination-active) {
+  .pagination__list::before {
+    display: none !important;
+  }
+}
+
+/* Header Actions Alignment & Icon-Only Overrides */
+header-actions,
+.header-actions--text {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-direction: row !important;
+  gap: 18px !important;
+}
+
+header-actions > *,
+header-actions .header-actions__action,
+header-actions .account-button,
+header-actions shopify-account,
+header-actions .swym-wishlist-header,
+header-actions .swym-button-canvas,
+header-actions a,
+header-actions button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #722424 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+}
+
+.account-button-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 22px !important;
+}
+
+header-actions .account-button__text,
+header-actions .header-actions__text-style,
+header-actions .header-actions__cart-icon > span:not(.svg-wrapper):not(.cart-bubble),
+header-actions .swym-title,
+header-actions .swym-label,
+header-actions span.account-button__text {
+  display: none !important;
+}
+
+header-actions svg,
+header-actions img,
+header-actions i,
+header-actions .svg-wrapper,
+header-actions .svg-wrapper svg,
+header-actions .swym-wishlist-header svg,
+header-actions .swym-icon {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  color: #722424 !important;
+  stroke: #722424 !important;
+  fill: none !important;
+  display: block !important;
+  vertical-align: middle !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+header-actions > *:hover,
+.header-actions__action:hover {
+  color: #722424 !important;
+  opacity: 0.8 !important;
+}
+
+header-actions .header-actions__cart-icon {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+
+header-actions .cart-bubble {
+  position: absolute !important;
+  top: -5px !important;
+  right: -7px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Mobile Layout Overrides to prevent icon clipping */
+@media screen and (max-width: 749px) {
+  .header__columns,
+  #header-component[data-menu-style='drawer'] .header__columns {
+    grid-template-columns: var(--header-mobile-bookend, 40px) var(--header-mobile-bookend, 40px) 1fr auto !important;
+    grid-template-areas: 'leftA leftB center rightB' !important;
+  }
+
+  header-actions,
+  .header-actions--text {
+    grid-area: rightB !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  header-actions svg,
+  header-actions img,
+  header-actions i,
+  header-actions .svg-wrapper,
+  header-actions .svg-wrapper svg,
+  header-actions .swym-wishlist-header svg,
+  header-actions .swym-icon {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+  }
+
+  header-actions > *,
+  header-actions .header-actions__action,
+  header-actions .account-button,
+  header-actions shopify-account,
+  header-actions .swym-wishlist-header,
+  header-actions .swym-button-canvas,
+  header-actions a,
+  header-actions button,
+  header-actions .header-actions__cart-icon,
+  .account-button-wrapper {
+    height: 20px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;
+    width: auto !important;
+  }
+}
+
+
+

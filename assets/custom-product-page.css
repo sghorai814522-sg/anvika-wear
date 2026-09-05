@@ -1,0 +1,620 @@
+/* ==========================================================================
+   Custom Product Details Page Styles (Reference Design Implementation)
+   ========================================================================== */
+
+/* 1. Global Container & Grid Alignment */
+.product-information {
+  max-width: 1440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media screen and (min-width: 750px) {
+  .product-information__grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
+    gap: 48px !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    grid-column: 1 / -1 !important;
+  }
+
+  .product-information__media {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 1 / 2 !important;
+  }
+
+  .product-details {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 2 / 3 !important;
+  }
+
+  .product-details > .group-block {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* 2. Media Gallery Layout & Left Vertical Thumbnails */
+.product-information__media {
+  width: 100% !important;
+  position: relative !important;
+}
+
+.slideshow-component,
+.slideshow--thumbnails-left,
+.slideshow-component:has(.slideshow-controls--thumbnails-left) {
+  display: flex !important;
+  flex-direction: row-reverse !important; /* Main image right, thumbnails left */
+  gap: 14px !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+}
+
+/* Thumbnail Strip (Left Column) */
+.slideshow-controls--thumbnails-left,
+.slideshow-controls__thumbnails,
+.thumbnail-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  width: 72px !important;
+  min-width: 72px !important;
+  max-height: 580px !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin !important;
+  padding: 2px !important;
+}
+
+.slideshow-controls__thumbnail-button,
+.thumbnail-list__item button {
+  width: 68px !important;
+  height: 90px !important;
+  aspect-ratio: 3 / 4 !important;
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  border: 1.5px solid #e5e5e5 !important;
+  background: #f8f8f8 !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.slideshow-controls__thumbnail-button:hover,
+.slideshow-controls__thumbnail-button[aria-current="true"],
+.slideshow-controls__thumbnail-button.is-active {
+  border-color: #111111 !important;
+  box-shadow: 0 0 0 1px #111111 !important;
+}
+
+.slideshow-controls__thumbnail-button img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+}
+
+/* Main Featured Image Container */
+.slideshow-slide,
+.slideshow-slide__media,
+.product-media-container {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background-color: #f4f4f4 !important;
+  aspect-ratio: 3 / 4 !important;
+  position: relative !important;
+}
+
+.slideshow-slide img,
+.product-media-container img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  border-radius: 10px !important;
+}
+
+/* Wishlist Heart Overlay on Main Image */
+.gallery-wishlist-overlay {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  z-index: 10 !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
+}
+
+.gallery-wishlist-overlay:hover {
+  transform: scale(1.08) !important;
+  background: #ffffff !important;
+}
+
+.gallery-wishlist-overlay svg {
+  width: 18px !important;
+  height: 18px !important;
+  fill: none !important;
+  stroke: #333333 !important;
+  stroke-width: 2 !important;
+}
+
+/* 3. Product Details Right Column */
+.product-details {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.product-details .group-block {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+/* Product Main Title (Single Clean Title Above Rating) */
+.custom-product-main-title,
+.product-details .custom-product-main-title {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #111111 !important;
+  line-height: 1.25 !important;
+  margin: 0 0 6px 0 !important;
+  letter-spacing: -0.2px !important;
+  font-family: inherit !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Hide duplicate titles inside group-block */
+.product-details .group-block h1:not(.custom-product-main-title),
+.product-details .group-block [data-testid="product-title"] h1,
+.product-details .group-block .view-product-title {
+  display: none !important;
+}
+
+/* Rating / Review Row */
+.product-rating-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 13px !important;
+  margin-bottom: 2px !important;
+}
+
+.product-rating-stars {
+  color: #e53e3e !important; /* Vivid Red/Coral Stars */
+  letter-spacing: 2px !important;
+  font-size: 14px !important;
+}
+
+.product-rating-text {
+  color: #555555 !important;
+  font-weight: 500 !important;
+}
+
+/* Price Formatting */
+.product-details product-price,
+.product-details .price-container-custom,
+.product-details .price {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 4px 0 10px 0 !important;
+}
+
+.product-details .price-item__group.price,
+.product-details .price-item--sale {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #111111 !important;
+}
+
+.product-details .compare-at-price,
+.product-details .price-item--regular {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #888888 !important;
+  text-decoration: line-through !important;
+}
+
+.product-details .price-discount-tag {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #b91c1c !important; /* Bold dark red */
+}
+
+/* 4. Variant Picker (Color & Size) */
+variant-picker {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+.variant-picker__option-name,
+.variant-option-label {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #222222 !important;
+  margin-bottom: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Size Chart Trigger Link */
+.size-chart-link {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #555555 !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+}
+
+.size-chart-link:hover {
+  color: #111111 !important;
+  text-decoration: underline !important;
+}
+
+/* Square Option Pill Buttons */
+.variant-picker__option-values,
+.variant-picker fieldset {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.variant-picker label,
+.variant-picker input[type="radio"] + label,
+.variant-picker .button--variant,
+.variant-option__button-label {
+  min-width: 46px !important;
+  height: 40px !important;
+  padding: 0 14px !important;
+  border: 1.5px solid #dcdcdc !important;
+  border-radius: 6px !important;
+  background-color: #ffffff !important;
+  color: #222222 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: none !important;
+}
+
+.variant-picker label:hover,
+.variant-option__button-label:hover {
+  border-color: #4a151b !important;
+  color: #4a151b !important;
+}
+
+/* Selected Size Button (Attractive Maroon Background & Crisp White Text) */
+.variant-picker input[type="radio"]:checked + label,
+.variant-picker label.is-selected,
+.variant-picker label[aria-checked="true"],
+.variant-picker input[type="radio"]:checked + .variant-option__button-label,
+.variant-option__button-label:has(input:checked) {
+  background-color: #4a151b !important;
+  color: #ffffff !important;
+  border-color: #4a151b !important;
+  box-shadow: 0 3px 8px rgba(74, 21, 27, 0.3) !important;
+}
+
+.variant-picker input[type="radio"]:checked + label *,
+.variant-picker label.is-selected *,
+.variant-picker label[aria-checked="true"] *,
+.variant-picker input[type="radio"]:checked + .variant-option__button-label *,
+.variant-option__button-label:has(input:checked) * {
+  color: #ffffff !important;
+}
+
+/* Color Swatches (Thumbnail Swatch Cards) */
+.swatch-option,
+.variant-picker [data-swatch-value] {
+  width: 48px !important;
+  height: 56px !important;
+  border-radius: 6px !important;
+  border: 1.5px solid #dcdcdc !important;
+  overflow: hidden !important;
+  padding: 2px !important;
+  background: #ffffff !important;
+}
+
+.variant-picker input[type="radio"]:checked + .swatch-option,
+.swatch-option.is-selected {
+  border-color: #8c252c !important;
+  box-shadow: 0 0 0 1px #8c252c !important;
+}
+
+/* 5. Quantity Stepper */
+buy-buttons,
+.product-details buy-buttons {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+.quantity-wrapper,
+quantity-selector {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 6px !important;
+}
+
+.quantity-label {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #222222 !important;
+}
+
+.quantity-selector__input-wrapper,
+.quantity-input-box {
+  display: inline-flex !important;
+  align-items: center !important;
+  border: 1px solid #dcdcdc !important;
+  border-radius: 6px !important;
+  height: 38px !important;
+  width: 110px !important;
+  justify-content: space-between !important;
+  background: #ffffff !important;
+}
+
+.quantity-selector__button,
+.quantity-input-box button {
+  width: 32px !important;
+  height: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 16px !important;
+  color: #333333 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.quantity-selector__input,
+.quantity-input-box input {
+  width: 36px !important;
+  border: none !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #111111 !important;
+}
+
+/* 6. Action Buttons (ADD TO CART & BUY NOW Side-by-Side) */
+.product-action-buttons-group,
+buy-buttons form {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+/* Add To Cart Button (Dark Maroon) */
+.add-to-cart-button,
+.product-details .button-secondary,
+.product-details button[name="add"] {
+  flex: 1 !important;
+  height: 48px !important;
+  background-color: #4a151b !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.add-to-cart-button:hover,
+.product-details button[name="add"]:hover {
+  background-color: #340e13 !important;
+}
+
+/* Buy Now Button (Gold / Ochre Gradient) */
+.shopify-payment-button__button,
+.buy-now-custom-button,
+.product-details .shopify-payment-button__button--unbranded {
+  flex: 1 !important;
+  height: 48px !important;
+  background: linear-gradient(135deg, #c68a35, #b87b2e) !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: opacity 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.shopify-payment-button__button:hover,
+.buy-now-custom-button:hover {
+  opacity: 0.92 !important;
+}
+
+/* 7. Secondary Actions Row (WISHLIST & SHARE) */
+.product-secondary-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+  padding-top: 10px !important;
+}
+
+.product-secondary-action-btn {
+  background: transparent !important;
+  border: none !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #444444 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+  padding: 4px 0 !important;
+}
+
+.product-secondary-action-btn:hover {
+  color: #8c252c !important;
+}
+
+/* Hide duplicate wishlist button inside form */
+.product-form-buttons > button:not(.add-to-cart-button):not(.add-to-cart):not([name="add"]) {
+  display: none !important;
+}
+
+/* 8. Mobile Optimizations (@media max-width: 749px) */
+@media screen and (max-width: 749px) {
+  .product-information {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .product-information__grid {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    grid-column: 1 / -1 !important;
+    gap: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .product-information__media,
+  .product-details {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+  }
+
+  .product-details > .group-block {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .slideshow-component,
+  .slideshow--thumbnails-left {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .slideshow-controls--thumbnails-left,
+  .slideshow-controls__thumbnails,
+  .thumbnail-list {
+    flex-direction: row !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow-x: auto !important;
+  }
+
+  .slideshow-controls__thumbnail-button,
+  .thumbnail-list__item button {
+    width: 54px !important;
+    height: 72px !important;
+  }
+
+  .product-details h1 {
+    font-size: 20px !important;
+    margin-bottom: 6px !important;
+  }
+
+  buy-buttons,
+  .product-details buy-buttons {
+    width: 100% !important;
+  }
+
+  .product-action-buttons-group,
+  buy-buttons form {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .add-to-cart-button,
+  .shopify-payment-button__button {
+    font-size: 13px !important;
+    letter-spacing: 0.5px !important;
+    height: 44px !important;
+    flex: 1 !important;
+  }
+}
+
+/* Force Badges on Left and Wishlist on Right across Product Recommendations */
+.product-recommendations .product-badges,
+.product-recommendations .product-badges--top-right,
+.product-recommendations .product-badges--top-left,
+.resource-list .product-badges,
+.resource-list .product-badges--top-right,
+.resource-list__item .product-badges {
+  position: absolute !important;
+  top: 10px !important;
+  left: 10px !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 5 !important;
+}
+
+.product-recommendations .wishlist-btn,
+.resource-list__item .wishlist-btn,
+.product-recommendations [data-wishlist-btn] {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+  z-index: 6 !important;
+}
+

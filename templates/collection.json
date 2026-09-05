@@ -216,7 +216,6 @@
     }
   },
   "order": [
-    "section",
     "main"
   ]
 }

@@ -1,4 +1,4 @@
-
+{{ 'custom-main-collection.css' | asset_url | stylesheet_tag }}
 
 <script
   src="{{ 'results-list.js' | asset_url }}"
@@ -34,6 +34,7 @@
 <div
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
 ></div>
+
 {% # theme-check-disable-next-line UnknownFilter %}
 <collection-component view-event-payload="{{ collection | standard_event_data: 'view' | escape }}">
   <results-list
@@ -43,6 +44,21 @@
     infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
   >
     {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
+
+    <div class="custom-collection-header">
+      <h1 class="custom-collection-title">{{ collection.title | default: 'SAREES' | upcase }}</h1>
+      <div class="custom-collection-flourish">
+        <span class="flourish-line"></span>
+        <span class="flourish-icon">
+          <svg width="40" height="14" viewBox="0 0 40 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 0C21.5 3.5 23.5 5.5 27 7C23.5 8.5 21.5 10.5 20 14C18.5 10.5 16.5 8.5 13 7C16.5 5.5 18.5 3.5 20 0Z" fill="#8C584C"/>
+            <path d="M10 7C7 4 3 5 1 7C3 9 7 10 10 7Z" fill="#8C584C"/>
+            <path d="M30 7C33 4 37 5 39 7C37 9 33 10 30 7Z" fill="#8C584C"/>
+          </svg>
+        </span>
+        <span class="flourish-line"></span>
+      </div>
+    </div>
 
     <div
       class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"

@@ -20,15 +20,11 @@
 
 {% capture cart_icon %}
   <cart-icon
-    class="header-actions__cart-icon{% if display_style == 'text' %} header-actions__cart-icon--text{% endif %}{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
+    class="header-actions__cart-icon{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
     data-testid="cart-icon"
   >
-    <span class="{% if display_style == 'icon' %}hidden{% else %}mobile:hidden{% endif %}">
-      {{ 'content.cart_title' | t }}
-    </span>
-
     <span
-      class="svg-wrapper {% if display_style != 'icon' %}desktop:hidden{% endif %}"
+      class="svg-wrapper"
       aria-hidden="true"
     >
       {{ 'icon-cart.svg' | inline_asset_content }}
@@ -41,8 +37,8 @@
 {% capture account_icon %}
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="15"
-    height="17"
+    width="22"
+    height="22"
     viewBox="0 0 15 17"
     fill="none"
     slot="signed-out-avatar"
@@ -51,7 +47,7 @@
     <path
       stroke="currentColor"
       stroke-linejoin="round"
-      stroke-width="var(--icon-stroke-width)"
+      stroke-width="1.5"
       d="M10.375 3.813a3.063 3.063 0 1 1-6.125 0 3.063 3.063 0 0 1 6.125 0ZM7.313 9.5c-3.667 0-6.24 2.691-6.563 6.125h13.125C13.552 12.191 10.979 9.5 7.312 9.5Z"
     />
   </svg>
@@ -83,7 +79,7 @@
       endif
     %}
     <div
-      class="account-button header-actions__action{% if display_style == 'text' %} account-button--text{% endif %} color-custom-popover"
+      class="account-button header-actions__action color-custom-popover"
     >
       <shopify-account
         menu="{{ customer_account_menu }}"
@@ -94,17 +90,8 @@
         {% if customer %}
           <div class="account-button__fallback"></div>
         {% else %}
-          <div slot="signed-out-avatar" class="account-button-wrapper" style="display: flex; flex-direction: column-reverse; align-items: center; justify-content: center; gap: 2px;">
-            <span
-              class="account-button__text header-actions__text-style {% if display_style == 'icon' %}hidden{% else %}mobile:hidden{% endif %}"
-            >
-              {{ 'content.account_title' | t }}
-            </span>
-
-            <span
-              class="{% if display_style != 'icon' %}desktop:hidden{% endif %}"
-              aria-hidden="true"
-            >
+          <div slot="signed-out-avatar" class="account-button-wrapper" style="display: flex; align-items: center; justify-content: center;">
+            <span aria-hidden="true" class="svg-wrapper">
               {{ account_icon }}
             </span>
           </div>
@@ -113,11 +100,9 @@
     </div>
   {% endif %}
 
-
-
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
     <button
-      class="header-actions__action button-unstyled{% if display_style == 'text' %} header-actions__text-style{% endif %}"
+      class="header-actions__action button-unstyled"
       on:click="#cart-drawer/toggle"
       aria-haspopup="dialog"
       aria-expanded="false"
@@ -131,7 +116,7 @@
   {% else %}
     <a
       href="{{ routes.cart_url }}"
-      class="header-actions__action action__cart{% if display_style == 'text' %} header-actions__text-style{% endif %}"
+      class="header-actions__action action__cart"
       aria-label="{{ 'accessibility.cart' | t }}"
       aria-describedby="cart-bubble-text"
     >
@@ -220,136 +205,154 @@
     min-height: var(--minimum-touch-target);
   }
 
-  header-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-lg, 20px);
-
-    @media screen and (max-width: 749px) {
-      justify-self: flex-end;
-    }
+  header-actions,
+  .header-actions--text {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-direction: row !important;
+    gap: 18px !important;
   }
 
-  .header-actions__action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    color: #722424;
-    transition: color 0.2s ease, opacity 0.2s ease;
+  header-actions > *,
+  header-actions .header-actions__action,
+  header-actions .account-button,
+  header-actions shopify-account,
+  header-actions .swym-wishlist-header,
+  header-actions .swym-button-canvas,
+  header-actions a,
+  header-actions button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 22px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    background: transparent !important;
+    border: none !important;
+    color: #722424 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
   }
 
-  .header-actions__action svg {
-    color: #722424;
+  .account-button-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 22px !important;
   }
 
+  header-actions .account-button__text,
+  header-actions .header-actions__text-style,
+  header-actions .header-actions__cart-icon > span:not(.svg-wrapper):not(.cart-bubble),
+  header-actions .swym-title,
+  header-actions .swym-label,
+  header-actions span.account-button__text {
+    display: none !important;
+  }
+
+  header-actions svg,
+  header-actions img,
+  header-actions i,
+  header-actions .svg-wrapper,
+  header-actions .svg-wrapper svg,
+  header-actions .swym-wishlist-header svg,
+  header-actions .swym-icon {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    color: #722424 !important;
+    stroke: #722424 !important;
+    fill: none !important;
+    display: block !important;
+    vertical-align: middle !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  header-actions > *:hover,
   .header-actions__action:hover {
-    color: #722424;
-    opacity: 0.8;
+    color: #722424 !important;
+    opacity: 0.8 !important;
   }
 
-  @media screen and (min-width: 750px) {
+  header-actions .header-actions__cart-icon {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  header-actions .cart-bubble {
+    position: absolute !important;
+    top: -5px !important;
+    right: -7px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Mobile Layout Overrides to prevent icon clipping */
+  @media screen and (max-width: 749px) {
+    .header__columns,
+    #header-component[data-menu-style='drawer'] .header__columns {
+      grid-template-columns: var(--header-mobile-bookend, 40px) var(--header-mobile-bookend, 40px) 1fr auto !important;
+      grid-template-areas: 'leftA leftB center rightB' !important;
+    }
+
+    header-actions,
     .header-actions--text {
-      gap: var(--gap-xl);
+      grid-area: rightB !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 12px !important;
+      width: auto !important;
+      overflow: visible !important;
     }
 
-    .header-actions__text-style {
-      font-size: var(--header-actions-font-size);
-      font-family: var(--header-actions-font-family);
-      font-weight: var(--header-actions-font-weight);
-      text-transform: var(--header-actions-text-case);
-    }
-  }
-
-  #header-component[data-menu-style='drawer'] header-actions {
-    justify-self: flex-end;
-  }
-
-  .header__column--right header-actions {
-    margin-inline-start: calc(var(--gap-md) * -1);
-  }
-
-  .header-actions__cart-icon {
-    --cart-bubble-size: 20px;
-    --cart-bubble-top: 4.5px;
-    --cart-bubble-right: 2.5px;
-
-    position: relative;
-  }
-
-  .header-actions__cart-icon .cart-bubble {
-    position: absolute;
-    width: var(--cart-bubble-size, 20px);
-    top: var(--cart-bubble-top);
-    right: var(--cart-bubble-right);
-  }
-
-  @media screen and (min-width: 750px) {
-    .header-actions__cart-icon--text.header-actions__cart-icon .cart-bubble {
-      position: relative;
-      top: 0;
-    }
-  }
-
-  .header-actions__cart-icon .cart-bubble__text {
-    font-family: var(--font-paragraph--family);
-    font-weight: var(--font-paragraph--weight);
-  }
-
-  .header-actions__cart-icon.header-actions__cart-icon--has-cart svg {
-    /* Create donut mask where the cart bubble sits */
-    mask: radial-gradient(
-      calc(var(--cart-bubble-size) + 2px) at calc(100% - var(--cart-bubble-right)) var(--cart-bubble-top),
-      transparent 45.45%,
-      #fff 45.45%,
-      #fff 100%
-    );
-  }
-
-  .cart-bubble.cart-bubble--animating .cart-bubble__background {
-    animation: grow var(--animation-speed) var(--animation-easing);
-  }
-
-  .cart-bubble--animating .cart-bubble__text {
-    --start-y: -1em;
-    --start-opacity: 1;
-    /* Set initial transform state before animation starts */
-    transform: translate(0, var(--start-y, -1em));
-    opacity: var(--start-opacity, 1);
-    animation: move-and-fade var(--animation-speed) var(--animation-easing);
-  }
-
-  cart-icon:has(.cart-bubble__text-count:empty) {
-    --cart-bubble-size: 10px;
-    --cart-bubble-top: 9px;
-    --cart-bubble-right: 9px;
-
-    .svg-wrapper {
-      --cart-bubble-top: 4px;
-      --cart-bubble-right: 4px;
-    }
-  }
-
-  @media screen and (min-width: 750px) {
-    cart-icon.header-actions__cart-icon--text:has(.cart-bubble__text-count:empty) {
-      --cart-bubble-right: 2.5px;
-    }
-  }
-
-  .header-actions__text {
-    display: flex;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 750px) {
-    .header-actions__cart-icon--text {
-      display: flex;
-      align-items: center;
-      gap: var(--gap-xs);
+    header-actions svg,
+    header-actions img,
+    header-actions i,
+    header-actions .svg-wrapper,
+    header-actions .svg-wrapper svg,
+    header-actions .swym-wishlist-header svg,
+    header-actions .swym-icon {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      min-height: 20px !important;
+      max-width: 20px !important;
+      max-height: 20px !important;
     }
 
-    .header__column--right .header-actions--text {
-      margin-inline-start: 0;
+    header-actions > *,
+    header-actions .header-actions__action,
+    header-actions .account-button,
+    header-actions shopify-account,
+    header-actions .swym-wishlist-header,
+    header-actions .swym-button-canvas,
+    header-actions a,
+    header-actions button,
+    header-actions .header-actions__cart-icon,
+    .account-button-wrapper {
+      height: 20px !important;
+      min-height: 20px !important;
+      max-height: 20px !important;
+      width: auto !important;
     }
   }
 {% endstylesheet %}
