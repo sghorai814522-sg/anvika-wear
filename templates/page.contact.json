@@ -1,145 +1,63 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "custom-contact",
       "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
+        "call_us": {
+          "type": "info_card",
           "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "icon_svg": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+            "title": "Call Us",
+            "subtext": "Speak directly with our travel experts",
+            "text": "<p>+91 7586889519</p>"
+          }
         },
-        "content": {
-          "type": "text",
-          "name": "t:names.content",
+        "email_us": {
+          "type": "info_card",
           "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "icon_svg": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/><path d='M22 6l-10 7L2 6' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+            "title": "Email Us",
+            "subtext": "Get a response within 24 hours",
+            "text": "<p>sundarbanbengaltrip@gmail.com</p>"
+          }
+        },
+        "visit_us": {
+          "type": "info_card",
+          "settings": {
+            "icon_svg": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/><circle cx='12' cy='10' r='3' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+            "title": "Visit Us",
+            "subtext": "Our office location",
+            "text": "<p>5RB2+296, Nath Para, Gosaba, Arampur, West Bengal 743370</p>"
+          }
+        },
+        "working_hours": {
+          "type": "info_card",
+          "settings": {
+            "icon_svg": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='12' cy='12' r='10' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/><path d='M12 6v6l4 2' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+            "title": "Working Hours",
+            "subtext": "We're available for you",
+            "text": "<p>Mon - Sat: 9:00 AM - 6:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>"
+          }
         }
       },
       "block_order": [
-        "title",
-        "content"
+        "call_us",
+        "email_us",
+        "visit_us",
+        "working_hours"
       ],
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 0
-      }
-    },
-    "form": {
-      "type": "section",
-      "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
-          "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "input_style": "default",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        }
-      },
-      "block_order": [
-        "contact_form_UwiCkQ"
-      ],
-      "name": "t:names.contact_form",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 84
+        "form_icon_svg": "<svg width='40' height='40' viewBox='0 0 24 24' fill='#245336'><path d='M21 11.5C21 16.75 16.75 21 11.5 21C9.69255 21 8.00693 20.4907 6.5771 19.6053L2.5 21L4.04169 17.1519C3.00366 15.6171 2.5 13.6841 2.5 11.5C2.5 6.25 6.75 2 12 2C17.25 2 21 6.25 21 11.5Z'/></svg>",
+        "form_title": "Send Us a Message",
+        "form_subtitle": "We'll respond as quickly as possible",
+        "map_iframe": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117925.35231278146!2d88.7561937965902!3d22.15579919532822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a021b001a18dceb%3A0x6e2c3b2f2d93e114!2sSundarban%20Bengal%20Trip!5e0!3m2!1sen!2sin!4v1714493322199!5m2!1sen!2sin' width='600' height='450' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>",
+        "whatsapp_title": "Need Immediate Help?",
+        "whatsapp_text": "<p>Our travel experts are available to assist you with booking, itinerary customization, and any questions.</p>",
+        "whatsapp_number": "8101344391"
       }
     }
   },
   "order": [
-    "main",
-    "form"
+    "main"
   ]
 }

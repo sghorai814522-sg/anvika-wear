@@ -130,8 +130,15 @@ body {
    3. Product Grid Layout (Desktop & Tablet)
    -------------------------------------------------------------------------- */
 @media screen and (min-width: 1200px) {
-  .product-grid,
-  .product-grid--grid {
+  .product-grid[product-grid-view='default'],
+  .product-grid--grid[product-grid-view='default'] {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px 16px !important;
+  }
+
+  .product-grid[product-grid-view='zoom-out'],
+  .product-grid--grid[product-grid-view='zoom-out'] {
     display: grid !important;
     grid-template-columns: repeat(6, 1fr) !important;
     gap: 24px 16px !important;
@@ -337,8 +344,17 @@ body {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   height: 2.7em !important;
+  height: 2.7em !important;
   min-height: 2.7em !important;
   max-height: 2.7em !important;
+}
+
+.product-card .product-grid-view-zoom-out--details {
+  display: none !important;
+}
+
+ul[product-grid-view='zoom-out'] .product-card .product-grid-view-zoom-out--details {
+  display: -webkit-box !important;
 }
 
 .product-card .text-block a,
@@ -678,6 +694,8 @@ header-actions .header-actions__cart-icon {
   justify-content: center !important;
   width: 22px !important;
   height: 22px !important;
+  overflow: visible !important;
+  margin-right: 8px !important;
 }
 
 header-actions .cart-bubble {
@@ -687,6 +705,7 @@ header-actions .cart-bubble {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  z-index: 10 !important;
 }
 
 /* Mobile Layout Overrides to prevent icon clipping */

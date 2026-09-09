@@ -1869,12 +1869,15 @@ header-actions.header-actions--text .header-actions__text-style {
 
 header-actions.header-actions--text .header-actions__cart-icon {
   position: relative;
+  overflow: visible !important;
+  margin-right: 8px !important;
 }
 
 header-actions.header-actions--text .header-actions__cart-icon .cart-bubble {
   position: absolute;
   top: -4px;
   right: -6px;
+  z-index: 10 !important;
 }
 
 /* INDIVA Custom Header Overrides - Final Polish */
