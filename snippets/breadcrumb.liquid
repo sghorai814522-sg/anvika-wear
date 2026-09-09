@@ -1,0 +1,268 @@
+{% comment %}
+  Renders breadcrumb navigation
+
+	Accepts:
+	-	container: {String} container class (compact, large).
+	- vertical_space: {String} vertical space class (vertical-space-xsmall, vertical-space-small).
+	- style: {String} additional style class.
+
+  Usage:
+	{% render 'breadcrumb', container: 'compact', vertical_space: 'vertical-space-xsmall', style: 'breadcrumb-main--margin' %}
+{% endcomment %}
+
+{%- if settings.show_breadcrumb and template != 'index' and template != blank -%}
+
+	<div class="container--large">
+
+		<div class="breadcrumb-main {{ style }}">
+		
+			<div class="breadcrumb-container gutter-bottom--page">
+
+				{{ 'component-breadcrumb.css' | asset_url | stylesheet_tag }}
+
+				<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+
+					<span class="breadcrumb__link"><a href="{{ routes.root_url }}"><span class="text-animation--underline-thin">{{ 'general.breadcrumb.homepage' | t }}</span></a></span>
+
+					{%- if template contains 'search' -%}
+
+						<span class="breadcrumb__separator">/</span>
+						<span class="breadcrumb__current">{{ 'general.breadcrumb.search' | t: terms: search.terms }}</span>
+
+					{%- else -%}
+					
+						{%- comment -%} Detect brand pages / collections / products first so we can skip menu trail for them {%- endcomment -%}
+						{%- assign is_brand_page = false -%}
+						{%- if template.suffix == 'brand-group' -%}
+							{%- assign is_brand_page = true -%}
+						{%- endif -%}
+
+						{%- assign is_brand_collection = false -%}
+						{%- if collection and collection.metafields.custom.brand_group.value != blank -%}
+							{%- assign is_brand_collection = true -%}
+						{%- endif -%}
+
+						{%- assign is_brand_product = false -%}
+						{%- if product and product.metafields.custom.brand_collection.value != blank -%}
+							{%- assign is_brand_product = true -%}
+						{%- endif -%}
+
+						{%- assign use_brand_logic = false -%}
+						{%- if is_brand_page or is_brand_collection or is_brand_product -%}
+							{%- assign use_brand_logic = true -%}
+						{%- endif -%}
+
+						{% assign current_url = request.path %}
+						{% assign is_product = false %}
+						{% if template contains 'product' %}
+						  {% assign is_product = true %}
+						  {% if collection %}
+						    {% assign current_url = collection.url %}
+						  {% endif %}
+						{% endif %}
+
+						{% assign trail_1 = blank %}
+						{% assign trail_2 = blank %}
+						{% assign trail_3 = blank %}
+						{% assign found_trail = false %}
+
+						{%- comment -%} Only search the menu when it is NOT a brand page / collection / product {%- endcomment -%}
+						{% unless use_brand_logic %}
+						{% if linklists['main-menu'] != blank %}
+							{% for link1 in linklists['main-menu'].links %}
+							  {% if link1.url == current_url %}
+							    {% assign trail_1 = link1 %}
+							    {% assign found_trail = true %}
+							    {% break %}
+							  {% else %}
+							    {% for link2 in link1.links %}
+							      {% if link2.url == current_url %}
+							        {% assign trail_1 = link1 %}
+							        {% assign trail_2 = link2 %}
+							        {% assign found_trail = true %}
+							        {% break %}
+							      {% else %}
+							        {% for link3 in link2.links %}
+							          {% if link3.url == current_url %}
+							            {% assign trail_1 = link1 %}
+							            {% assign trail_2 = link2 %}
+							            {% assign trail_3 = link3 %}
+							            {% assign found_trail = true %}
+							            {% break %}
+							          {% endif %}
+							        {% endfor %}
+							        {% if found_trail %}{% break %}{% endif %}
+							      {% endif %}
+							    {% endfor %}
+							    {% if found_trail %}{% break %}{% endif %}
+							  {% endif %}
+							{% endfor %}
+						{% endif %}
+						{% endunless %}
+
+						{% if found_trail %}
+							{% if trail_1 != blank %}
+								{% assign t1_title = trail_1.object.title | default: trail_1.title %}
+								<span class="breadcrumb__separator">/</span>
+								{% if trail_1.url == current_url and is_product == false %}
+									<span class="breadcrumb__current">{{ t1_title | escape }}</span>
+								{% else %}
+									<span class="breadcrumb__link"><a href="{{ trail_1.url }}"><span class="text-animation--underline-thin">{{ t1_title | escape }}</span></a></span>
+								{% endif %}
+							{% endif %}
+							{% if trail_2 != blank %}
+								{% assign t2_title = trail_2.object.title | default: trail_2.title %}
+								<span class="breadcrumb__separator">/</span>
+								{% if trail_2.url == current_url and is_product == false %}
+									<span class="breadcrumb__current">{{ t2_title | escape }}</span>
+								{% else %}
+									<span class="breadcrumb__link"><a href="{{ trail_2.url }}"><span class="text-animation--underline-thin">{{ t2_title | escape }}</span></a></span>
+								{% endif %}
+							{% endif %}
+							{% if trail_3 != blank %}
+								{% assign t3_title = trail_3.object.title | default: trail_3.title %}
+								<span class="breadcrumb__separator">/</span>
+								{% if trail_3.url == current_url and is_product == false %}
+									<span class="breadcrumb__current">{{ t3_title | escape }}</span>
+								{% else %}
+									<span class="breadcrumb__link"><a href="{{ trail_3.url }}"><span class="text-animation--underline-thin">{{ t3_title | escape }}</span></a></span>
+								{% endif %}
+							{% endif %}
+
+							{%- if is_product -%}
+								<span class="breadcrumb__separator">/</span>
+								<span class="breadcrumb__current">{{ product.title | escape }}</span>
+							{%- endif -%}
+
+						{% else %}
+						{%- assign is_brand_page = false -%}
+						{%- if template.suffix == 'brand-group' -%}
+							{%- assign is_brand_page = true -%}
+						{%- endif -%}
+
+						{%- assign is_brand_collection = false -%}
+						{%- if collection and collection.metafields.custom.brand_group.value != blank -%}
+							{%- assign is_brand_collection = true -%}
+						{%- endif -%}
+
+						{%- assign is_brand_product = false -%}
+						{%- if product and product.metafields.custom.brand_collection.value != blank -%}
+							{%- assign is_brand_product = true -%}
+						{%- endif -%}
+
+						{%- if is_brand_page or is_brand_collection or is_brand_product -%}
+							<span class="breadcrumb__separator">/</span>
+							{%- assign brands_page = pages['brands'] -%}
+							{%- assign brands_title = brands_page.title | default: 'Brands' -%}
+							<span class="breadcrumb__link"><a href="{{ brands_page.url | default: '/pages/brands' }}"><span class="text-animation--underline-thin">{{ brands_title }}</span></a></span>
+
+							{%- if is_brand_page -%}
+								<span class="breadcrumb__separator">/</span>
+								<span class="breadcrumb__current">{{ page.title | escape }}</span>
+							{%- elsif is_brand_collection -%}
+								{%- assign b_group = collection.metafields.custom.brand_group.value -%}
+								<span class="breadcrumb__separator">/</span>
+								<span class="breadcrumb__link"><a href="/pages/{{ b_group | downcase | replace: ' ', '-' }}"><span class="text-animation--underline-thin">{{ b_group }}</span></a></span>
+								
+								<span class="breadcrumb__separator">/</span>
+								{%- if template contains 'collection' -%}
+									<span class="breadcrumb__current">{{ collection.title | escape }}</span>
+								{%- else -%}
+									<span class="breadcrumb__link"><a href="{{ collection.url }}"><span class="text-animation--underline-thin">{{ collection.title | escape }}</span></a></span>
+								{%- endif -%}
+							{%- elsif is_brand_product -%}
+								{%- assign b_coll = product.metafields.custom.brand_collection.value -%}
+								{%- assign b_group = b_coll.metafields.custom.brand_group.value -%}
+								{%- if b_group != blank -%}
+									<span class="breadcrumb__separator">/</span>
+									<span class="breadcrumb__link"><a href="/pages/{{ b_group | downcase | replace: ' ', '-' }}"><span class="text-animation--underline-thin">{{ b_group }}</span></a></span>
+								{%- endif -%}
+
+								<span class="breadcrumb__separator">/</span>
+								<span class="breadcrumb__link"><a href="{{ b_coll.url }}"><span class="text-animation--underline-thin">{{ b_coll.title | escape }}</span></a></span>
+							{%- endif -%}
+
+						{%- else -%}
+						{%- if template == 'list-collections' -%}
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__current">{{ 'general.breadcrumb.collections' | t }}</span>
+						{%- endif -%}
+
+						{%- if collection -%}
+
+							<span class="breadcrumb__separator">/</span>
+							{%- if template contains 'collection' -%}
+								<span class="breadcrumb__current">{{ collection.title | escape }}</span>
+							{%- else -%}
+								<span class="breadcrumb__link"><a href="{{ collection.url }}"><span class="text-animation--underline-thin">{{ collection.title | escape }}</span></a></span>
+							{%- endif -%}
+							
+						{%- elsif template contains 'product' -%}
+							{% comment %} The product title is added at the end of the breadcrumb block {% endcomment %}
+
+						{%- elsif article -%}
+
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__link"><a href="{{ blog.url }}"><span class="text-animation--underline-thin">{{ blog.title | escape }}</span></a></span>
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__current">{{ article.title | escape }}</span>
+
+						{%- elsif blog -%}
+
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__current">{{ blog.title | escape }}</span>
+
+						{%- elsif template contains 'customers' -%}
+
+							<span class="breadcrumb__separator">/</span>
+							{%- if template contains 'address' or template contains 'order' -%}
+								<span class="breadcrumb__link"><a href="{{ routes.account_url }}"><span class="text-animation--underline-thin">{{ 'general.breadcrumb.account.title' | t }}</span></a></span>
+								<span class="breadcrumb__separator">/</span>
+								<span class="breadcrumb__current">
+									{%- if template contains 'addresses' -%}
+										{{ 'general.breadcrumb.account.addresses' | t }}
+									{%- elsif template contains 'order' -%}
+										{{ 'general.breadcrumb.account.orders' | t }}
+									{%- endif -%}
+								</span>
+							{%- else -%}
+								<span class="breadcrumb__current">{{ 'general.breadcrumb.account.title' | t }}</span>
+							{%- endif -%}
+
+						{%- elsif template contains 'cart' -%}
+
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__current">{{ 'general.breadcrumb.cart' | t }}</span>
+
+						{%- elsif template contains '404' -%}
+
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__current">{{ 'general.breadcrumb.404' | t }}</span>
+
+						{%- else -%}	
+
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__current">{{ page.title | escape }}</span>
+
+						{%- endif -%}
+						{%- endif -%}
+
+						{%- if product -%}
+
+							<span class="breadcrumb__separator">/</span>
+							<span class="breadcrumb__current">{{ product.title | escape }}</span>
+
+						{%- endif -%}
+						{% endif %}
+
+					{%- endif -%}
+
+				</nav>
+
+			</div>
+
+		</div>
+		
+	</div>
+
+{%- endif -%}

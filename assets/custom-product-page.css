@@ -18,7 +18,6 @@
     display: grid !important;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
     gap: 48px !important;
-    align-items: flex-start !important;
     width: 100% !important;
     grid-column: 1 / -1 !important;
   }
@@ -276,15 +275,79 @@ variant-picker {
   text-decoration: underline !important;
 }
 
+/* Size Chart Modal Styles */
+.size-chart-modal {
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  margin: auto !important;
+  max-width: 90vw !important;
+}
+
+.size-chart-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.size-chart-modal__content {
+  background: #ffffff !important;
+  padding: 24px !important;
+  border-radius: 12px !important;
+  position: relative !important;
+  min-width: 320px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+}
+
+.size-chart-modal__close {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  background: none !important;
+  border: none !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  color: #555555 !important;
+}
+
+.size-chart-modal__title {
+  margin: 0 0 16px 0 !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #111111 !important;
+  text-align: center !important;
+}
+
+.size-chart-modal__table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.size-chart-modal__table th,
+.size-chart-modal__table td {
+  border: 1px solid #e5e5e5 !important;
+  padding: 10px !important;
+  text-align: center !important;
+  color: #333333 !important;
+}
+
+.size-chart-modal__table th {
+  background-color: #f8f8f8 !important;
+  font-weight: 600 !important;
+}
+
 /* Square Option Pill Buttons */
 .variant-picker__option-values,
 .variant-picker fieldset {
-  display: flex !important;
   flex-wrap: wrap !important;
   gap: 8px !important;
   border: none !important;
-  padding: 0 !important;
+  padding: 0 0 4px 0 !important;
   margin: 0 !important;
+}
+
+.variant-picker fieldset::-webkit-scrollbar {
+  display: none !important;
 }
 
 .variant-picker label,
@@ -292,6 +355,8 @@ variant-picker {
 .variant-picker .button--variant,
 .variant-option__button-label {
   min-width: 46px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
   height: 40px !important;
   padding: 0 14px !important;
   border: 1.5px solid #dcdcdc !important;
@@ -421,7 +486,7 @@ buy-buttons form {
 }
 
 /* Add To Cart Button (Dark Maroon) */
-.add-to-cart-button,
+.product-details .add-to-cart-button,
 .product-details .button-secondary,
 .product-details button[name="add"] {
   flex: 1 !important;
@@ -441,7 +506,7 @@ buy-buttons form {
   justify-content: center !important;
 }
 
-.add-to-cart-button:hover,
+.product-details .add-to-cart-button:hover,
 .product-details button[name="add"]:hover {
   background-color: #340e13 !important;
 }
@@ -616,5 +681,47 @@ buy-buttons form {
   left: auto !important;
   bottom: auto !important;
   z-index: 6 !important;
+}
+
+/* ==========================================================================
+   Quick Add Modal Fixes (Overriding aggressiv !important rules)
+   ========================================================================== */
+.quick-add-modal .product-information {
+  padding: 0 !important;
+}
+
+@media screen and (min-width: 750px) {
+  .quick-add-modal .product-information__grid {
+    display: contents !important;
+  }
+  
+  .quick-add-modal .product-information__media {
+    width: var(--quick-add-modal-gallery-width, 100%) !important;
+    grid-column: 1 / 4 !important;
+  }
+  
+  .quick-add-modal .product-details {
+    grid-column: 4 / -1 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+.quick-add-modal .slideshow-component,
+.quick-add-modal .slideshow--thumbnails-left,
+.quick-add-modal .slideshow-component:has(.slideshow-controls--thumbnails-left) {
+  display: block !important;
+  flex-direction: unset !important;
+}
+
+.quick-add-modal .slideshow-controls--thumbnails-left,
+.quick-add-modal .slideshow-controls__thumbnails,
+.quick-add-modal .thumbnail-list,
+.quick-add-modal .product-information__media :is(slideshow-controls, slideshow-controls[thumbnails]) {
+  display: none !important;
+}
+
+.quick-add-modal .gallery-wishlist-overlay {
+  display: none !important;
 }
 

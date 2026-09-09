@@ -13,7 +13,7 @@
     </div>
 
     <div class="cfc-grid-wrapper">
-      <div class="cfc-grid">
+      <div class="cfc-grid" style="--desktop-columns: {{ section.settings.columns_desktop | default: 4 }};">
         {%- assign collection = section.settings.collection -%}
         {%- if collection != blank and collection.products_count > 0 -%}
           {%- for product in collection.products limit: section.settings.product_limit -%}
@@ -107,7 +107,16 @@
       "max": 12,
       "step": 1,
       "label": "Number of products to show",
-      "default": 6
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Number of columns on desktop",
+      "default": 4
     }
   ],
   "presets": [

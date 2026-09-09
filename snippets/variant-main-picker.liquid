@@ -100,10 +100,32 @@
               </span>
               {% assign opt_name_lower = product_option.name | downcase %}
               {% if opt_name_lower contains 'size' %}
-                <a href="#size-chart" class="size-chart-link" onclick="event.preventDefault(); alert('Size Guide:\nS: Chest 38 in\nM: Chest 40 in\nL: Chest 42 in\nXL: Chest 44 in\nXXL: Chest 46 in');">
+                <a href="#size-chart" class="size-chart-link" onclick="event.preventDefault(); document.getElementById('SizeChartModal').showModal();">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 6v4M10 6v3M14 6v4M18 6v3"/></svg>
                   <span>Size Chart</span>
                 </a>
+
+                <dialog id="SizeChartModal" class="size-chart-modal" onclick="if(event.target === this) this.close()">
+                  <div class="size-chart-modal__content">
+                    <button class="size-chart-modal__close" onclick="document.getElementById('SizeChartModal').close()" aria-label="Close">✕</button>
+                    <h3 class="size-chart-modal__title">Size Guide</h3>
+                    <table class="size-chart-modal__table">
+                      <thead>
+                        <tr>
+                          <th>Size</th>
+                          <th>Chest (in)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>S</td><td>38</td></tr>
+                        <tr><td>M</td><td>40</td></tr>
+                        <tr><td>L</td><td>42</td></tr>
+                        <tr><td>XL</td><td>44</td></tr>
+                        <tr><td>XXL</td><td>46</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </dialog>
               {% endif %}
             </legend>
             {%- for product_option_value in product_option.values -%}

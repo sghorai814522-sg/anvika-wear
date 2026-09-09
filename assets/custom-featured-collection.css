@@ -71,7 +71,7 @@
 
 .cfc-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(var(--desktop-columns, 4), 1fr);
   gap: 20px;
 }
 
