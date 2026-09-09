@@ -41,6 +41,55 @@
       <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search for sarees, kurtis..." class="chi-search-input">
     </form>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInputs = document.querySelectorAll('.chi-search-input');
+      if (!searchInputs.length) return;
+      
+      const placeholders = [
+        "Search for sarees...", 
+        "Search for kurtis...", 
+        "Search for lehengas...", 
+        "Search for dresses...",
+        "Search for ethnic wear..."
+      ];
+      let wordIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+      
+      function type() {
+        const currentWord = placeholders[wordIndex];
+        
+        if (isDeleting) {
+          charIndex--;
+          typingSpeed = 50;
+        } else {
+          charIndex++;
+          typingSpeed = 100;
+        }
+        
+        searchInputs.forEach(input => {
+          input.placeholder = currentWord.substring(0, charIndex);
+        });
+        
+        let nextDelay = typingSpeed;
+        
+        if (!isDeleting && charIndex === currentWord.length) {
+          isDeleting = true;
+          nextDelay = 2000;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % placeholders.length;
+          nextDelay = 500;
+        }
+        
+        setTimeout(type, nextDelay);
+      }
+      
+      setTimeout(type, 1000);
+    });
+  </script>
 {% endunless %}
 
 {% stylesheet %}
